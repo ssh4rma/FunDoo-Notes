@@ -1,0 +1,40 @@
+<mat-card class="example-card" appearance="outlined">
+  <div class="card-content">
+    <mat-card-header>
+      <div class="card-header">
+        <img src="../../../assets/google.png" alt="Image of Google Logo" />
+        <h1>Login</h1>
+        <h3>Use your Google Account</h3>
+      </div>
+    </mat-card-header>
+    <div class="card-body">
+      <mat-card-content>
+        <!-- Email mui -->
+        <div class="card-email-and-pass">
+          <mat-form-field appearance="fill" class="email-pass">
+            <mat-label>Email or phone</mat-label>
+            <input
+              matInput
+              placeholder="pat@example.com"
+              [formControl]="email"
+              (blur)="updateErrorMessage()"
+              required
+            />
+            <mat-error *ngIf="email.invalid">{{ errorMessage() }}</mat-error>
+          </mat-form-field>
+
+          <!-- Password mui -->
+          <mat-form-field class="email-pass">
+            <mat-label>Password*</mat-label>
+            <input matInput [type]="hide() ? 'password' : 'text'" />
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+    </div>
+  </div>
+  <button id="forgot-pass">forgot Password ?</button>
+  <div class="bottom-btn">
+    <button id="create-ac">Create account</button>
+    <button id="login-btn">Login</button>
+  </div>
+</mat-card>
