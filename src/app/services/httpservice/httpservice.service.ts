@@ -5,10 +5,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class HttpserviceService {
-  baseURL = 'https://fundoonotes.incubation.bridgelabz.com/api/';
+  baseURL = 'https://fundoonotes.incubation.bridgelabz.com/api';
   constructor(private http: HttpClient) {}
 
-  //getHeader
   getHeader() {
     const header = new HttpHeaders({
       Authorization: localStorage.getItem('token') || '',
@@ -16,11 +15,27 @@ export class HttpserviceService {
     return header;
   }
 
-  //get api
   getApi(endpoint: string, headers: HttpHeaders = new HttpHeaders()) {
     return this.http.get(this.baseURL + endpoint, { headers });
   }
 
-  //post api
-  postApi(endpoint: string, header: HttpHeaders = new HttpHeaders()) {}
+  postApi(
+    endpoint: string,
+    header: HttpHeaders = new HttpHeaders(),
+    body?: any
+  ) {
+    return this.http.post(this.baseURL + endpoint, { header }, body);
+  }
+
+  putApi(
+    endpoint: string,
+    headers: HttpHeaders = new HttpHeaders(),
+    body?: any
+  ) {
+    return this.http.put(this.baseURL + endpoint, { headers }, body);
+  }
+
+  deleteApi(endpoint: string, headers: HttpHeaders = new HttpHeaders()) {
+    return this.http.delete(this.baseURL + endpoint, { headers });
+  }
 }

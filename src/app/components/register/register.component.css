@@ -37,7 +37,7 @@
 }
 
 .header img {
-  width: 100px;
+  width: 120px;
   height: 40px;
 }
 
@@ -56,6 +56,19 @@
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+  margin-bottom: 15px;
+}
+
+#username {
+  margin-bottom: 15px;
+}
+
+.helper-text-pass {
+  margin-bottom: 15px;
+}
+
+.password-check-text {
+  margin-top: 10px;
 }
 
 .form-field {
@@ -133,7 +146,8 @@
     padding: 16px;
   }
 
-  .right-info img {
-    max-width: 150px;
+  .right-info {
+    visibility: hidden;
+    position: absolute;
   }
 }

@@ -1,83 +1,123 @@
-<div class="page-wrapper">
-  <mat-card class="signup-card" appearance="outlined">
-    <div class="card-body">
-      <div class="left-form">
-        <div class="header">
-          <img src="../../../assets/google.png" alt="Google Logo" />
-          <h2>Create your Google Account</h2>
-        </div>
+<form [formGroup]="signupForm" (ngSubmit)="onSignup()">
+  <div class="page-wrapper">
+    <mat-card class="signup-card" appearance="outlined">
+      <div class="card-body">
+        <div class="left-form">
+          <div class="header">
+            <img src="../../../assets/google.png" alt="Google Logo" />
+            <h2>Create your Google Account</h2>
+          </div>
 
-        <form class="form-container" #form="ngForm">
           <div class="form-row">
             <mat-form-field appearance="outline" class="form-field">
               <mat-label>First Name</mat-label>
-              <input
-                matInput
-                name="firstName"
-                [(ngModel)]="firstName"
-                required
-              />
+              <input matInput formControlName="firstName" />
+              <mat-error
+                *ngIf="signupForm.get('firstName')?.hasError('required')"
+              >
+                First name is required
+              </mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="form-field">
               <mat-label>Last Name</mat-label>
-              <input matInput name="lastName" [(ngModel)]="lastName" required />
+              <input matInput formControlName="lastName" />
+              <mat-error
+                *ngIf="signupForm.get('lastName')?.hasError('required')"
+              >
+                Last name is required
+              </mat-error>
             </mat-form-field>
           </div>
 
-          <mat-form-field appearance="outline" class="full-width">
+          <mat-form-field id="username" appearance="outline" class="full-width">
             <mat-label>Username</mat-label>
-            <input matInput name="username" [(ngModel)]="username" required />
+            <input matInput formControlName="username" />
+            <mat-error *ngIf="signupForm.get('username')?.hasError('required')">
+              Username is required
+            </mat-error>
+            <mat-error
+              *ngIf="signupForm.get('username')?.hasError('minlength')"
+            >
+              Username must be at least 3 characters
+            </mat-error>
           </mat-form-field>
-          <p class="helper-text">You can use letters, numbers & periods</p>
-          <button class="text-button">Use my current email instead</button>
+
+          <div class="helper-text-pass">
+            <p>You can use letters, numbers & periods</p>
+            <button class="text-button" type="button">
+              Use my current email instead
+            </button>
+          </div>
 
           <div class="form-row">
             <mat-form-field appearance="outline" class="form-field">
               <mat-label>Password</mat-label>
               <input
                 matInput
-                type="password"
-                name="password"
-                [(ngModel)]="password"
-                required
+                [type]="showPassword ? 'text' : 'password'"
+                formControlName="password"
               />
+              <mat-error
+                *ngIf="signupForm.get('password')?.hasError('required')"
+              >
+                Password is required
+              </mat-error>
+              <mat-error
+                *ngIf="signupForm.get('password')?.hasError('minlength')"
+              >
+                Password must be at least 8 characters
+              </mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="form-field">
               <mat-label>Confirm</mat-label>
               <input
                 matInput
-                type="password"
-                name="confirmPassword"
-                [(ngModel)]="confirmPassword"
-                required
+                [type]="showPassword ? 'text' : 'password'"
+                formControlName="confirmPassword"
               />
+              <mat-error
+                *ngIf="signupForm.get('confirmPassword')?.hasError('required')"
+              >
+                Confirmation is required
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  signupForm.hasError('passwordMismatch') &&
+                  (signupForm.get('confirmPassword')?.touched ||
+                    signupForm.get('confirmPassword')?.dirty)
+                "
+              >
+                Passwords do not match
+              </mat-error>
             </mat-form-field>
           </div>
 
-          <p class="helper-text">
+          <p class="password-check-text">
             Use 8 or more characters with a mix of letters, numbers & symbols
           </p>
 
           <div class="checkbox-row">
-            <mat-checkbox>Show Password</mat-checkbox>
+            <mat-checkbox [(ngModel)]="showPassword"
+              >Show Password</mat-checkbox
+            >
           </div>
 
           <div class="bottom-actions">
             <a class="text-button">Sign in instead</a>
-            <button mat-flat-button color="primary">Next</button>
+            <button mat-flat-button color="primary" type="submit">Next</button>
           </div>
-        </form>
-      </div>
+        </div>
 
-      <div class="right-info">
-        <img
-          src="../../../assets/google-product-image.png"
-          alt="Google illustration"
-        />
-        <h3>One account. All of Google working for you.</h3>
+        <div class="right-info">
+          <img
+            src="../../../assets/google-product-image.png"
+            alt="Google illustration"
+          />
+          <h3>One account. All of Google working for you.</h3>
+        </div>
       </div>
-    </div>
-  </mat-card>
-</div>
+    </mat-card>
+  </div>
+</form>
