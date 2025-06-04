@@ -2,39 +2,61 @@
   <div class="card-content">
     <mat-card-header>
       <div class="card-header">
-        <img src="../../../assets/google.png" alt="Image of Google Logo" />
+        <img src="../../../assets/google.png" alt="Google Logo" />
         <h1>Login</h1>
         <h3>Use your Google Account</h3>
       </div>
     </mat-card-header>
-    <div class="card-body">
-      <mat-card-content>
-        <!-- Email mui -->
-        <div class="card-email-and-pass">
-          <mat-form-field appearance="fill" class="email-pass">
-            <mat-label>Email or phone</mat-label>
+
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <div class="email-and-pass">
+          <!-- Email -->
+          <mat-form-field id="email" appearance="outline">
+            <mat-label>Email</mat-label>
             <input
+              type="email"
               matInput
-              placeholder="pat@example.com"
-              [formControl]="email"
-              (blur)="updateErrorMessage()"
-              required
+              formControlName="email"
+              [errorStateMatcher]="matcher"
+              placeholder="Ex. pat@example.com"
             />
-            <mat-error *ngIf="email.invalid">{{ errorMessage() }}</mat-error>
+            <mat-hint>Errors appear instantly!</mat-hint>
+            <mat-error *ngIf="emailFormControl.hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="emailFormControl.hasError('email')">
+              Please enter a valid email address
+            </mat-error>
           </mat-form-field>
 
-          <!-- Password mui -->
-          <mat-form-field class="email-pass">
-            <mat-label>Password*</mat-label>
-            <input matInput [type]="hide() ? 'password' : 'text'" />
+          <!-- Password -->
+          <mat-form-field id="pass" appearance="outline">
+            <mat-label>Enter your password</mat-label>
+            <input
+              matInput
+              [type]="hide ? 'password' : 'text'"
+              formControlName="password"
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide"
+            >
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            </button>
           </mat-form-field>
         </div>
-      </mat-card-content>
-    </div>
-  </div>
-  <button id="forgot-pass">forgot Password ?</button>
-  <div class="bottom-btn">
-    <button id="create-ac">Create account</button>
-    <button id="login-btn">Login</button>
+        <button id="forgot-pass">Forgot Password?</button>
+        <div class="bottom-btn">
+          <button id="create-ac" (click)="goToSignup()">Create Account</button>
+          <button id="login-btn" type="submit" [disabled]="isDisabled">
+            Login
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
   </div>
 </mat-card>
