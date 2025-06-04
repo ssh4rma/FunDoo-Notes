@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { UserService } from 'src/app/services/user/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -35,7 +36,7 @@ export class LoginComponent {
   matcher = new ErrorStateMatcher();
   user: UserService;
 
-  constructor(user: UserService) {
+  constructor(user: UserService, private router: Router) {
     this.user = user;
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -61,24 +62,27 @@ export class LoginComponent {
   onLogin() {
     // console.log('Triggered');
     if (this.loginForm.valid) {
-      const { email, password } = this.loginForm.value;
-      console.log(email, password);
-      let data = {
-        email: email,
-        password: password,
-      };
-      this.user.login(data).subscribe({
-        next: (res: any) => {
-          console.log(res);
-          localStorage.setItem('token', res.data.id);
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
+      this.user
+        .login({
+          email: this.loginForm.value.email,
+          password: this.loginForm.value.password,
+        })
+        .subscribe({
+          next: (res: any) => {
+            console.log(res);
+            localStorage.setItem('token', res.id);
+          },
+          error: (err) => {
+            console.log(err);
+          },
+        });
     } else {
       console.log('Form is invalid');
       this.loginForm.markAllAsTouched();
     }
+  }
+
+  goToSignup() {
+    this.router.navigate(['/register']);
   }
 }

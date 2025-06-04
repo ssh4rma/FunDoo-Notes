@@ -17,6 +17,11 @@
               >
                 First name is required
               </mat-error>
+              <mat-error
+                *ngIf="signupForm.get('firstName')?.hasError('minlength')"
+              >
+                Enter Valid name
+              </mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="form-field">
@@ -27,19 +32,22 @@
               >
                 Last name is required
               </mat-error>
+              <mat-error
+                *ngIf="signupForm.get('lastName')?.hasError('minlength')"
+              >
+                Enter Valid name
+              </mat-error>
             </mat-form-field>
           </div>
 
-          <mat-form-field id="username" appearance="outline" class="full-width">
-            <mat-label>Username</mat-label>
-            <input matInput formControlName="username" />
-            <mat-error *ngIf="signupForm.get('username')?.hasError('required')">
-              Username is required
+          <mat-form-field id="email" appearance="outline" class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" />
+            <mat-error *ngIf="signupForm.get('email')?.hasError('required')">
+              Email is required
             </mat-error>
-            <mat-error
-              *ngIf="signupForm.get('username')?.hasError('minlength')"
-            >
-              Username must be at least 3 characters
+            <mat-error *ngIf="signupForm.get('email')?.hasError('email')">
+              Please enter a valid email address
             </mat-error>
           </mat-form-field>
 
@@ -99,13 +107,15 @@
           </p>
 
           <div class="checkbox-row">
-            <mat-checkbox [(ngModel)]="showPassword"
-              >Show Password</mat-checkbox
-            >
+            <mat-checkbox (click)="toggleShowPassword($event)">
+              Show Password
+            </mat-checkbox>
           </div>
 
           <div class="bottom-actions">
-            <a class="text-button">Sign in instead</a>
+            <button class="text-button" (click)="goToLogin()">
+              Sign in instead
+            </button>
             <button mat-flat-button color="primary" type="submit">Next</button>
           </div>
         </div>

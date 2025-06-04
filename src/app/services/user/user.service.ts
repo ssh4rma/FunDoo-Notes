@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpserviceService } from '../httpservice/httpservice.service';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -8,11 +9,21 @@ export class UserService {
   constructor(private http: HttpserviceService) {}
 
   //user can login and signup
-  login(payload: any) {
-    return this.http.postApi('/user/login', payload);
+  login(data: any) {
+    let endpoint = '/user/login';
+    let header = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    });
+    return this.http.postApi(endpoint, data, header);
   }
 
-  signup(payload: any) {
-    return this.http.postApi('/user/userSignUp', payload);
+  signup(data: any) {
+    let endPoint: string = '/user/userSignUp';
+    let header = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    });
+    return this.http.postApi(endPoint, data, header);
   }
 }

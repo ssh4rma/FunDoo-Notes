@@ -72,6 +72,11 @@ img {
   font-weight: bold;
 }
 
+#create-ac:hover {
+  text-decoration: underline;
+  color: #3e52b2;
+}
+
 .bottom-btn {
   display: flex;
   flex-direction: row;
@@ -103,6 +108,7 @@ img {
   height: 35px;
   font-weight: bold;
   cursor: not-allowed;
+  margin-right: 25px;
 }
 
 #login-btn:not(:disabled) {
@@ -114,6 +120,7 @@ img {
   color: white;
   height: 35px;
   font-weight: bold;
+  margin-right: 25px;
 }
 
 .email-and-pass {

@@ -16,26 +16,15 @@ export class HttpserviceService {
   }
 
   getApi(endpoint: string, headers: HttpHeaders = new HttpHeaders()) {
-    return this.http.get(this.baseURL + endpoint, { headers });
+    let url = this.baseURL + endpoint;
+    return this.http.get(url, { headers });
   }
 
-  postApi(
-    endpoint: string,
-    header: HttpHeaders = new HttpHeaders(),
-    body?: any
-  ) {
-    return this.http.post(this.baseURL + endpoint, { header }, body);
-  }
+  postApi(endPoint: string, body: any, headers: HttpHeaders) {
+    let combinedUrl = this.baseURL + endPoint;
 
-  putApi(
-    endpoint: string,
-    headers: HttpHeaders = new HttpHeaders(),
-    body?: any
-  ) {
-    return this.http.put(this.baseURL + endpoint, { headers }, body);
-  }
-
-  deleteApi(endpoint: string, headers: HttpHeaders = new HttpHeaders()) {
-    return this.http.delete(this.baseURL + endpoint, { headers });
+    return this.http.post(combinedUrl, (body = JSON.stringify(body)), {
+      headers,
+    });
   }
 }

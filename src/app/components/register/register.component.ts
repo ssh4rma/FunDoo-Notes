@@ -17,6 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { UserService } from 'src/app/services/user/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -36,19 +37,44 @@ import { UserService } from 'src/app/services/user/user.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
   signupForm!: FormGroup;
   showPassword = false;
 
-  constructor(private fb: FormBuilder, private user: UserService) {}
+  constructor(
+    private fb: FormBuilder,
+    private user: UserService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.signupForm = this.fb.group(
       {
-        firstName: ['', Validators.required],
-        lastName: ['', Validators.required],
-        username: ['', [Validators.required, Validators.minLength(3)]],
-        password: ['', [Validators.required, Validators.minLength(8)]],
+        firstName: [
+          '',
+          [
+            Validators.required,
+            Validators.pattern('^[A-Za-z]+$'),
+            Validators.minLength(3),
+          ],
+        ],
+        lastName: [
+          '',
+          [
+            Validators.required,
+            Validators.pattern('^[A-Za-z]+$'),
+            Validators.minLength(3),
+          ],
+        ],
+        email: ['', [Validators.required, Validators.email]],
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(5),
+            Validators.pattern('^[A-Za-z]+$'),
+          ],
+        ],
         confirmPassword: ['', Validators.required],
       },
       { validators: this.passwordMatchValidator }
@@ -63,29 +89,34 @@ export class RegisterComponent implements OnInit {
 
   onSignup() {
     if (this.signupForm.valid) {
-      const { firstName, lastName, username, password } = this.signupForm.value;
-      console.log(firstName, lastName, username, password);
-
-      const data = {
-        firstName: 'shubham',
-        lastName: 'sharma',
-        service: 'advance',
-        email: 'shubham.sharma3290@gmail.com',
-        password: 'shubham234',
-      };
-
-      this.user.signup(data).subscribe({
-        next: (res: any) => {
-          console.log(res);
-          localStorage.setItem('token', res.data.id);
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
+      this.user
+        .signup({
+          firstName: this.signupForm.value.firstName,
+          lastName: this.signupForm.value.lastName,
+          email: this.signupForm.value.email,
+          service: 'advance',
+          password: this.signupForm.value.password,
+        })
+        .subscribe({
+          next: (res: any) => {
+            console.log(res);
+            localStorage.setItem('token', res.data.id);
+            this.router.navigate(['/login']);
+          },
+          error: (err) => {
+            console.log(err);
+          },
+        });
     } else {
       console.log('Form is invalid');
       this.signupForm.markAllAsTouched();
     }
+  }
+
+  goToLogin() {
+    this.router.navigate(['/login']);
+  }
+  toggleShowPassword(event: any) {
+    this.showPassword = !this.showPassword;
   }
 }
