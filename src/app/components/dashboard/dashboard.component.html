@@ -1,0 +1,49 @@
+<mat-toolbar>
+  <div class="nav-bar">
+    <div class="left-section">
+      <button
+        mat-icon-button
+        id="toolbar-icon"
+        aria-label="Menu"
+        (click)="drawer.toggle()"
+      >
+        <mat-icon style="color: #5f6368">menu</mat-icon>
+      </button>
+      <img
+        id="google-keep-logo"
+        src="../../../assets/google_keep_logo.png"
+        alt="logo"
+      />
+      <span style="color: #5f6368">Keep</span>
+    </div>
+
+    <div class="search">
+      <mat-icon class="search-icon">search</mat-icon>
+      <input type="search" placeholder="Search" id="search-bar" />
+    </div>
+
+    <div class="right-side-icons">
+      <button id="icon" mat-icon-button><mat-icon>refresh</mat-icon></button>
+      <button id="icon" mat-icon-button>
+        <mat-icon>view_stream</mat-icon>
+      </button>
+      <button id="icon" mat-icon-button><mat-icon>settings</mat-icon></button>
+    </div>
+
+    <div class="right-most-icons">
+      <button id="icon" mat-icon-button><mat-icon>apps</mat-icon></button>
+      <button id="icon" mat-icon-button><mat-icon>person</mat-icon></button>
+    </div>
+  </div>
+</mat-toolbar>
+
+<mat-drawer-container
+  class="example-container"
+  style="height: calc(100vh - 64px)"
+>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <p>Items</p>
+  </mat-drawer>
+
+  <mat-drawer-content></mat-drawer-content>
+</mat-drawer-container>
