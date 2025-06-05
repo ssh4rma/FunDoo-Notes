@@ -131,3 +131,7 @@ img {
   align-items: center;
   margin-bottom: 20px;
 }
+
+#spinner-icon {
+  position: absolute;
+}

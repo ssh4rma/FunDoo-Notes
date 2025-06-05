@@ -12,6 +12,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { UserService } from 'src/app/services/user/user.service';
 import { Router } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-login',
@@ -26,6 +27,7 @@ import { Router } from '@angular/router';
     MatIconModule,
     MatDividerModule,
     FormsModule,
+    MatProgressSpinnerModule,
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
@@ -35,6 +37,7 @@ export class LoginComponent {
   hide = true;
   matcher = new ErrorStateMatcher();
   user: UserService;
+  spinner = false;
 
   constructor(user: UserService, private router: Router) {
     this.user = user;
