@@ -1,0 +1,75 @@
+<mat-toolbar>
+  <div class="nav-bar">
+    <div class="left-section">
+      <button
+        mat-icon-button
+        aria-label="Menu"
+        id="menu-btn"
+        (click)="isSideNavOpened = !isSideNavOpened"
+      >
+        <mat-icon style="color: #5f6368">menu</mat-icon>
+      </button>
+      <img
+        id="google-keep-logo"
+        src="../../../assets/google_keep_logo.png"
+        alt="logo"
+      />
+      <span style="color: #5f6368">Keep</span>
+    </div>
+
+    <div class="search">
+      <mat-icon class="search-icon">search</mat-icon>
+      <input type="search" placeholder="Search" id="search-bar" />
+    </div>
+
+    <div class="right-side-icons">
+      <button id="icon" mat-icon-button><mat-icon>refresh</mat-icon></button>
+      <button id="icon" mat-icon-button>
+        <mat-icon>view_stream</mat-icon>
+      </button>
+      <button id="icon" mat-icon-button><mat-icon>settings</mat-icon></button>
+    </div>
+
+    <div class="right-most-icons">
+      <button id="icon" mat-icon-button><mat-icon>apps</mat-icon></button>
+      <button id="icon" mat-icon-button><mat-icon>person</mat-icon></button>
+    </div>
+  </div>
+</mat-toolbar>
+
+<!-- <app-toolbar />
+<app-sidenav /> -->
+
+<mat-drawer-container
+  class="example-container"
+  style="height: calc(100vh - 64px)"
+>
+  <mat-drawer
+    #drawer
+    class="example-sidenav"
+    mode="side"
+    [opened]="true"
+    [ngClass]="{ collapsed: !isSideNavOpened }"
+    (mouseenter)="isSideNavOpened = true"
+    (mouseleave)="isSideNavOpened = false"
+  >
+    <div class="sidenav-icons">
+      <button
+        *ngFor="let item of sideNavItems; let i = index"
+        id="side-nav-icon"
+        [ngClass]="{
+          selected: selectedIndex === i,
+          hovered: selectedIndex !== i && hoveredIndex === i
+        }"
+        (click)="selectedIndex = i"
+        (mouseenter)="hoveredIndex = i"
+        (mouseleave)="hoveredIndex = null"
+      >
+        <mat-icon id="side-nav-item">{{ item.icon }}</mat-icon>
+        <span class="label-text">{{ item.label }}</span>
+      </button>
+    </div>
+  </mat-drawer>
+
+  <mat-drawer-content></mat-drawer-content>
+</mat-drawer-container>

@@ -71,6 +71,7 @@ export class LoginComponent {
           next: (res: any) => {
             console.log(res);
             localStorage.setItem('token', res.id);
+            this.router.navigate(['/dashboard']);
           },
           error: (err) => {
             console.log(err);
