@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -9,4 +9,10 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './icons.component.html',
   styleUrls: ['./icons.component.css'],
 })
-export class IconsComponent {}
+export class IconsComponent {
+  @Output() closeBtn = new EventEmitter();
+
+  closeBox(): void {
+    this.closeBtn.emit(false);
+  }
+}

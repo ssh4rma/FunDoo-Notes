@@ -1,20 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
-import { IconsComponent } from './icons/icons.component';
+import { Note } from 'src/app/models/note.model';
+import { NoteComponent } from './note/note.component';
+import { NoteCardComponent } from './note-card/note-card.component';
 
 @Component({
   selector: 'app-notes',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatIconModule, IconsComponent],
+  imports: [CommonModule, NoteComponent, NoteCardComponent],
   templateUrl: './notes.component.html',
   styleUrls: ['./notes.component.css'],
 })
-export class NotesComponent {
-  expandNote = false;
-
-  expand(): void {
-    this.expandNote = !this.expandNote;
-  }
-}
+export class NotesComponent {}

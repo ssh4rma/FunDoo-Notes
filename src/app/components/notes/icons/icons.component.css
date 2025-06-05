@@ -1,12 +1,12 @@
 .icons {
   display: flex;
   flex-direction: row;
-  gap: 170px;
-  color: rgb(95, 96, 100);
+  gap: 80px;
+  color: #5f6368;
   width: 45%;
 }
 
-#icon {
+.icon {
   font-size: 20px;
 }
 
@@ -16,9 +16,26 @@
   gap: 20px;
 }
 
-button {
+#close-btn {
   border: none;
   outline: none;
   background-color: transparent;
   font-size: 15px;
+  padding-top: 10px;
+}
+
+#close-btn:hover {
+  background-color: rgb(205, 203, 203);
+  border-radius: 20px;
+}
+
+.icon-btn {
+  padding-top: 9px;
+  border: none;
+  background-color: transparent;
+}
+
+.icon-btn:hover {
+  background-color: rgb(205, 203, 203);
+  border-radius: 50%;
 }
