@@ -21,8 +21,20 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 export class DashboardComponent {
   showFiller = false;
   showMenu = false;
+  isSideNavOpened = false;
+
+  selectedIndex: number = 0;
+  hoveredIndex: number | null = null;
 
   toggleMenu(): void {
     this.showMenu = !this.showMenu;
   }
+
+  sideNavItems = [
+    { icon: 'lightbulb', label: 'Notes' },
+    { icon: 'notifications', label: 'Reminders' },
+    { icon: 'edit', label: 'Add Label' },
+    { icon: 'archive', label: 'Archive' },
+    { icon: 'delete', label: 'Trash' },
+  ];
 }
