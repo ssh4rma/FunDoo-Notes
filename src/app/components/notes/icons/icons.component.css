@@ -1,0 +1,24 @@
+.icons {
+  display: flex;
+  flex-direction: row;
+  gap: 170px;
+  color: rgb(95, 96, 100);
+  width: 45%;
+}
+
+#icon {
+  font-size: 20px;
+}
+
+.left-icon {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 15px;
+}

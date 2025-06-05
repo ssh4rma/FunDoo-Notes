@@ -4,6 +4,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { NotesComponent } from '../notes/notes.component';
+import { NoteComponent } from '../notes/note/note.component';
+import { IconsComponent } from '../notes/icons/icons.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,6 +17,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatSidenavModule,
     MatIconModule,
     MatToolbarModule,
+    NotesComponent,
+    NoteComponent,
+    IconsComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
