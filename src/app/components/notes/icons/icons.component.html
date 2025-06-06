@@ -1,34 +1,114 @@
 <div class="icons">
   <div class="left-icon">
-    <button class="icon-btn" id="textFormat">
+    <button *ngIf="formatBtn" class="icon-btn" id="textFormat">
       <mat-icon class="icon">text_format</mat-icon>
     </button>
-    <button class="icon-btn" id="palette">
+
+    <button
+      *ngIf="colorPalette"
+      class="icon-btn"
+      id="palette"
+      (click)="showPalette = !showPalette"
+    >
       <mat-icon class="icon">palette</mat-icon>
     </button>
-    <button class="icon-btn" id="notification">
+
+    <button *ngIf="notification" class="icon-btn" id="notification">
       <mat-icon class="icon">notification_important</mat-icon>
     </button>
-    <button class="icon-btn" id="collaborator">
+
+    <button *ngIf="collaborator" class="icon-btn" id="collaborator">
       <mat-icon class="icon">person_add</mat-icon>
     </button>
-    <button class="icon-btn" id="image">
+
+    <button *ngIf="image" class="icon-btn" id="image">
       <mat-icon class="icon">image</mat-icon>
     </button>
-    <button class="icon-btn" id="archive">
+
+    <button *ngIf="archive" class="icon-btn" id="archive">
       <mat-icon class="icon">archive</mat-icon>
     </button>
-    <button class="icon-btn" id="three-dots">
+
+    <button *ngIf="threeDots" class="icon-btn" id="three-dots">
       <mat-icon class="icon">more_vert</mat-icon>
     </button>
-    <button class="icon-btn" id="undo">
+
+    <button *ngIf="undo" class="icon-btn" id="undo">
       <mat-icon class="icon">undo</mat-icon>
     </button>
-    <button class="icon-btn" id="redo">
+
+    <button *ngIf="redo" class="icon-btn" id="redo">
       <mat-icon class="icon">redo</mat-icon>
     </button>
   </div>
+
   <div class="right-icon">
-    <button id="close-btn" (click)="closeBox()">Close</button>
+    <button *ngIf="closeButton" id="close-btn" (click)="closeBox()">
+      Close
+    </button>
   </div>
 </div>
+
+<mat-card *ngIf="colorPalette && disableBtn">
+  <mat-chip-listbox
+    *ngIf="showPalette"
+    aria-label="Color selection"
+    class="palette-card"
+  >
+    <mat-chip-option
+      class="palette-color"
+      [ngStyle]="{ 'background-color': '#F28B82' }"
+      (click)="setBg('#F28B82')"
+    ></mat-chip-option>
+    <mat-chip-option
+      class="palette-color"
+      [ngStyle]="{ 'background-color': '#FBBC04' }"
+      (click)="setBg('#FBBC04')"
+    ></mat-chip-option>
+    <mat-chip-option
+      class="palette-color"
+      [ngStyle]="{ 'background-color': '#FFF475' }"
+      (click)="setBg('#FFF475')"
+    ></mat-chip-option>
+    <mat-chip-option
+      class="palette-color"
+      [ngStyle]="{ 'background-color': '#CCFF90' }"
+      (click)="setBg('#CCFF90')"
+    ></mat-chip-option>
+    <mat-chip-option
+      class="palette-color"
+      [ngStyle]="{ 'background-color': '#A7FFEB' }"
+      (click)="setBg('#A7FFEB')"
+    ></mat-chip-option>
+    <mat-chip-option
+      class="palette-color"
+      [ngStyle]="{ 'background-color': '#CBF0F8' }"
+      (click)="setBg('#CBF0F8')"
+    ></mat-chip-option>
+    <mat-chip-option
+      class="palette-color"
+      [ngStyle]="{ 'background-color': '#AECBFA' }"
+      (click)="setBg('#AECBFA')"
+    ></mat-chip-option>
+    <mat-chip-option
+      class="palette-color"
+      [ngStyle]="{ 'background-color': '#D7AEFB' }"
+      (click)="setBg('#D7AEFB')"
+    ></mat-chip-option>
+    <mat-chip-option
+      class="palette-color"
+      [ngStyle]="{ 'background-color': '#FDCFE8' }"
+      (click)="setBg('#FDCFE8')"
+    ></mat-chip-option>
+    <mat-chip-option
+      class="palette-color"
+      [ngStyle]="{ 'background-color': '#E6C9A8' }"
+      (click)="setBg('#E6C9A8')"
+    ></mat-chip-option>
+    <mat-chip-option
+      class="palette-color"
+      [ngStyle]="{ 'background-color': '#E8EAED' }"
+      (click)="setBg('#E8EAED')"
+    ></mat-chip-option>
+  </mat-chip-listbox>
+</mat-card>

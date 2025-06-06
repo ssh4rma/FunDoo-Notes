@@ -3,4 +3,5 @@ export interface Note {
   description: string;
   isPined: boolean;
   isArchived: boolean;
+  color: string;
 }

@@ -19,6 +19,7 @@
   id="AddNoteCard"
   *ngIf="expandNote"
   [ngClass]="{ expandedCard: expandNote }"
+  [ngStyle]="{ 'background-color': bgColor }"
 >
   <mat-card-content id="AddCardContent">
     <div class="top-content">
@@ -28,6 +29,7 @@
         placeholder="Title"
         value="title"
         [(ngModel)]="title"
+        [ngStyle]="{ 'background-color': bgColor }"
       />
       <mat-icon fontIcon="keep_off"></mat-icon>
     </div>
@@ -37,9 +39,23 @@
       id="takeNoteBar"
       value="description"
       [(ngModel)]="description"
+      [ngStyle]="{ 'background-color': bgColor }"
     />
     <div id="bottom-icons-tab">
-      <app-icons (closeBtn)="dataFromCloseBtn($event)" />
+      <app-icons
+        (bgColor)="setBgColor($event)"
+        (closeBtn)="dataFromCloseBtn($event)"
+        [formatBtn]="true"
+        [colorPalette]="true"
+        [notification]="true"
+        [collaborator]="true"
+        [image]="true"
+        [archive]="true"
+        [threeDots]="true"
+        [undo]="true"
+        [redo]="true"
+        [disableBtn]="true"
+      />
     </div>
   </mat-card-content>
 </mat-card>

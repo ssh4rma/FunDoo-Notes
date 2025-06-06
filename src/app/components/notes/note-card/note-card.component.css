@@ -1,0 +1,14 @@
+.notes-card {
+  margin: auto;
+  width: 45%;
+}
+
+.card {
+  margin-bottom: 20px;
+  height: 200px;
+  border-radius: 10px;
+}
+
+.icons {
+  margin-top: 90px;
+}
