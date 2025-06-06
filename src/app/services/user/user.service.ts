@@ -10,12 +10,13 @@ export class UserService {
 
   //user can login and signup
   login(data: any) {
-    let endpoint = '/user/login';
+    let endpoint =
+      'https://fundoonotes.incubation.bridgelabz.com/api/user/login';
     let header = new HttpHeaders({
       'Content-Type': 'application/json',
       Accept: 'application/json',
     });
-    return this.http.postApi(endpoint, data, header);
+    return this.http.postApi(endpoint, data, { header });
   }
 
   signup(data: any) {
@@ -24,6 +25,6 @@ export class UserService {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     });
-    return this.http.postApi(endPoint, data, header);
+    return this.http.postApi(endPoint, data, { header });
   }
 }

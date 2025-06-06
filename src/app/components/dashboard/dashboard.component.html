@@ -23,20 +23,27 @@
     </div>
 
     <div class="right-side-icons">
-      <button id="icon" mat-icon-button><mat-icon>refresh</mat-icon></button>
-      <button id="icon" mat-icon-button>
+      <button id="refresh" class="icon" mat-icon-button>
+        <mat-icon>refresh</mat-icon>
+      </button>
+      <button id="grid-toggle" class="icon" mat-icon-button>
         <mat-icon>view_stream</mat-icon>
       </button>
-      <button id="icon" mat-icon-button><mat-icon>settings</mat-icon></button>
+      <button id="setting" class="icon" mat-icon-button>
+        <mat-icon>settings</mat-icon>
+      </button>
     </div>
 
     <div class="right-most-icons">
-      <button id="icon" mat-icon-button><mat-icon>apps</mat-icon></button>
-      <button id="icon" mat-icon-button><mat-icon>person</mat-icon></button>
+      <button id="apps" class="icon" mat-icon-button>
+        <mat-icon>apps</mat-icon>
+      </button>
+      <button class="icon" mat-icon-button><mat-icon>person</mat-icon></button>
     </div>
   </div>
 </mat-toolbar>
 
+<!-- SideNav -->
 <mat-drawer-container
   class="example-container"
   style="height: calc(100vh - 64px)"
@@ -50,13 +57,20 @@
     (mouseenter)="isSideNavOpened = true"
     (mouseleave)="isSideNavOpened = false"
   >
-    <div class="sidenav-icons">
+    <div
+      class="sidenav-icons"
+      [ngClass]="{
+        expanded: isSideNavOpened === true,
+      }"
+    >
       <button
         *ngFor="let item of sideNavItems; let i = index"
         id="side-nav-icon"
         [ngClass]="{
           selected: selectedIndex === i,
-          hovered: selectedIndex !== i && hoveredIndex === i
+          hovered: selectedIndex !== i && hoveredIndex === i,
+          expanded: isSideNavOpened === true,
+          notExpanded: isSideNavOpened === false
         }"
         (click)="selectedIndex = i"
         (mouseenter)="hoveredIndex = i"

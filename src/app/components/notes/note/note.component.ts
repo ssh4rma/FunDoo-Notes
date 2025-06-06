@@ -30,6 +30,8 @@ export class NoteComponent {
 
   //the component will collapse when there's click outside of the component
   @HostListener('document:click', ['$event'])
+
+  //event handler
   handleOutsideClick(event: Event) {
     if (!this.eRef.nativeElement.contains(event.target)) {
       if (this.title.trim() || this.description.trim()) {

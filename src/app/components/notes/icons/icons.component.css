@@ -21,7 +21,7 @@
   outline: none;
   background-color: transparent;
   font-size: 15px;
-  padding-top: 10px;
+  margin-top: 10px;
 }
 
 #close-btn:hover {
@@ -38,4 +38,49 @@
 .icon-btn:hover {
   background-color: rgb(205, 203, 203);
   border-radius: 50%;
+}
+
+@media (max-width: 1400px) {
+  #undo,
+  #redo {
+    visibility: hidden;
+    position: absolute;
+  }
+  .left-icon {
+    gap: 50px;
+  }
+}
+
+@media (max-width: 1500px) {
+  #textFormat,
+  #notification,
+  #image,
+  #three-dots,
+  #undo,
+  #redo {
+    visibility: hidden;
+    position: absolute;
+  }
+}
+
+@media (max-width: 880px) {
+  #textFormat,
+  #notification,
+  #image,
+  #three-dots,
+  #undo,
+  #redo,
+  #palette,
+  #collaborator,
+  #archive {
+    visibility: hidden;
+    position: absolute;
+  }
+}
+
+@media (max-width: 455px) {
+  #close-btn {
+    visibility: hidden;
+    position: absolute;
+  }
 }

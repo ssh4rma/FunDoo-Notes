@@ -20,6 +20,13 @@ export class NotesService {
   }
 
   getNotes() {
-    return this.http.getApi('/notes/getNotesList', this.http.getHeader());
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    });
+    return this.http.getApi(
+      'https://fundoonotes.incubation.bridgelabz.com/api/notes/getNotesList',
+      { headers }
+    );
   }
 }

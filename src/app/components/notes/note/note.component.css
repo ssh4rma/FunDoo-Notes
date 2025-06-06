@@ -81,3 +81,31 @@ p {
 #bottom-icons-tab {
   margin-top: 30px;
 }
+
+@media (max-width: 635px) {
+  #titleBar,
+  #takeNoteBar {
+    width: 100px;
+  }
+}
+
+@media (max-width: 350px) {
+  #titleBar,
+  #takeNoteBar {
+    visibility: hidden;
+    position: absolute;
+  }
+}
+
+@media (max-width: 730px) {
+  .right-side-icons {
+    visibility: hidden;
+    position: absolute;
+  }
+}
+
+@media (max-width: 470px) {
+  .left-side {
+    width: 10px;
+  }
+}
