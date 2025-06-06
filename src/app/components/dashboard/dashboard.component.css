@@ -65,12 +65,13 @@ mat-toolbar {
   margin-right: 50px;
 }
 
-#icon {
+.icon {
   color: #5f6368;
 }
 
 .example-container {
   height: calc(100vh - 64px);
+  left: 0px;
 }
 
 .example-sidenav {
@@ -98,6 +99,7 @@ mat-toolbar {
   width: 100%;
   justify-content: flex-start;
   min-width: 64px;
+  margin-left: 8px;
   color: #5f6368;
 }
 
@@ -135,13 +137,28 @@ mat-toolbar {
   border-radius: 50%;
 }
 
-#side-nav-icon {
+.sidenav-icons.expanded {
+  margin-right: 100px;
+}
+
+#side-nav-icon.expanded {
+  background-color: transparent;
+  width: 180px;
+  border: none;
+  margin-bottom: 20px;
+  overflow: hidden;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+#side-nav-icon.notExpanded {
   background-color: transparent;
   transition: background-color 0.2s;
-  padding: 8px;
-  width: 100%;
+  padding: 10px 0px;
+  padding-left: 7px;
+  width: 50px;
   text-align: left;
-  border-radius: 10px;
+  border-radius: 50%;
   border: none;
 }
 
@@ -151,4 +168,27 @@ mat-toolbar {
 
 #side-nav-icon.hovered {
   background-color: #e0e0e0;
+}
+
+@media (max-width: 650px) {
+  .search {
+    margin-left: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  #menu-btn,
+  #refresh,
+  #grid-toggle {
+    visibility: hidden;
+    position: absolute;
+  }
+}
+
+@media (max-width: 410px) {
+  span,
+  .search {
+    visibility: hidden;
+    position: absolute;
+  }
 }

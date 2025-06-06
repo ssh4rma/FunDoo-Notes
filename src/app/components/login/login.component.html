@@ -30,6 +30,11 @@
             </mat-error>
           </mat-form-field>
 
+          <!-- Spinner -->
+          <ng-container *ngIf="spinner">
+            <mat-spinner id="spinner-icon" diameter="40"></mat-spinner>
+          </ng-container>
+
           <!-- Password -->
           <mat-form-field id="pass" appearance="outline">
             <mat-label>Enter your password</mat-label>
@@ -52,7 +57,12 @@
         <button id="forgot-pass">Forgot Password?</button>
         <div class="bottom-btn">
           <button id="create-ac" (click)="goToSignup()">Create Account</button>
-          <button id="login-btn" type="submit" [disabled]="isDisabled">
+          <button
+            id="login-btn"
+            type="submit"
+            [disabled]="isDisabled"
+            (click)="spinner = true"
+          >
             Login
           </button>
         </div>

@@ -1,0 +1,45 @@
+<mat-card (click)="expand()" [ngClass]="{ defaultCard: expandNote }">
+  <mat-card-content>
+    <div class="card">
+      <div class="left-side">
+        <p>Take a note...</p>
+      </div>
+      <div class="right-side">
+        <div class="right-side-icons">
+          <mat-icon>check_box</mat-icon>
+          <mat-icon>brush</mat-icon>
+          <mat-icon>imagesmode</mat-icon>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<mat-card
+  id="AddNoteCard"
+  *ngIf="expandNote"
+  [ngClass]="{ expandedCard: expandNote }"
+>
+  <mat-card-content id="AddCardContent">
+    <div class="top-content">
+      <input
+        type="text"
+        id="titleBar"
+        placeholder="Title"
+        value="title"
+        [(ngModel)]="title"
+      />
+      <mat-icon fontIcon="keep_off"></mat-icon>
+    </div>
+    <input
+      type="text"
+      placeholder="Take a note..."
+      id="takeNoteBar"
+      value="description"
+      [(ngModel)]="description"
+    />
+    <div id="bottom-icons-tab">
+      <app-icons (closeBtn)="dataFromCloseBtn($event)" />
+    </div>
+  </mat-card-content>
+</mat-card>
