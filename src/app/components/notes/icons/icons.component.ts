@@ -34,8 +34,21 @@ export class IconsComponent {
   @Input() closeButton = false;
   @Input() disableBtn = false;
 
+  colors: string[] = [
+    '#F28B82',
+    '#FBBC04',
+    '#FFF475',
+    '#CCFF90',
+    '#A7FFEB',
+    '#CBF0F8',
+    '#AECBFA',
+    '#D7AEFB',
+    '#FDCFE8',
+    '#E6C9A8',
+    '#E8EAED',
+  ];
+
   showPalette = false;
-  currentBg = '';
 
   setBg(color: string): void {
     this.bgColor.emit(color);

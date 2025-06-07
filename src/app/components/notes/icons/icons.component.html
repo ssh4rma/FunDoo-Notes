@@ -4,14 +4,24 @@
       <mat-icon class="icon">text_format</mat-icon>
     </button>
 
-    <button
-      *ngIf="colorPalette"
-      class="icon-btn"
-      id="palette"
-      (click)="showPalette = !showPalette"
-    >
-      <mat-icon class="icon">palette</mat-icon>
-    </button>
+    <div class="palette-wrapper" *ngIf="colorPalette">
+      <button
+        class="icon-btn"
+        id="palette"
+        (click)="showPalette = !showPalette"
+      >
+        <mat-icon class="icon">palette</mat-icon>
+      </button>
+
+      <mat-card *ngIf="showPalette && disableBtn" class="palette-card">
+        <div
+          *ngFor="let color of colors"
+          class="palette-color"
+          [ngStyle]="{ 'background-color': color }"
+          (click)="setBg(color)"
+        ></div>
+      </mat-card>
+    </div>
 
     <button *ngIf="notification" class="icon-btn" id="notification">
       <mat-icon class="icon">notification_important</mat-icon>
@@ -48,67 +58,3 @@
     </button>
   </div>
 </div>
-
-<mat-card *ngIf="colorPalette && disableBtn">
-  <mat-chip-listbox
-    *ngIf="showPalette"
-    aria-label="Color selection"
-    class="palette-card"
-  >
-    <mat-chip-option
-      class="palette-color"
-      [ngStyle]="{ 'background-color': '#F28B82' }"
-      (click)="setBg('#F28B82')"
-    ></mat-chip-option>
-    <mat-chip-option
-      class="palette-color"
-      [ngStyle]="{ 'background-color': '#FBBC04' }"
-      (click)="setBg('#FBBC04')"
-    ></mat-chip-option>
-    <mat-chip-option
-      class="palette-color"
-      [ngStyle]="{ 'background-color': '#FFF475' }"
-      (click)="setBg('#FFF475')"
-    ></mat-chip-option>
-    <mat-chip-option
-      class="palette-color"
-      [ngStyle]="{ 'background-color': '#CCFF90' }"
-      (click)="setBg('#CCFF90')"
-    ></mat-chip-option>
-    <mat-chip-option
-      class="palette-color"
-      [ngStyle]="{ 'background-color': '#A7FFEB' }"
-      (click)="setBg('#A7FFEB')"
-    ></mat-chip-option>
-    <mat-chip-option
-      class="palette-color"
-      [ngStyle]="{ 'background-color': '#CBF0F8' }"
-      (click)="setBg('#CBF0F8')"
-    ></mat-chip-option>
-    <mat-chip-option
-      class="palette-color"
-      [ngStyle]="{ 'background-color': '#AECBFA' }"
-      (click)="setBg('#AECBFA')"
-    ></mat-chip-option>
-    <mat-chip-option
-      class="palette-color"
-      [ngStyle]="{ 'background-color': '#D7AEFB' }"
-      (click)="setBg('#D7AEFB')"
-    ></mat-chip-option>
-    <mat-chip-option
-      class="palette-color"
-      [ngStyle]="{ 'background-color': '#FDCFE8' }"
-      (click)="setBg('#FDCFE8')"
-    ></mat-chip-option>
-    <mat-chip-option
-      class="palette-color"
-      [ngStyle]="{ 'background-color': '#E6C9A8' }"
-      (click)="setBg('#E6C9A8')"
-    ></mat-chip-option>
-    <mat-chip-option
-      class="palette-color"
-      [ngStyle]="{ 'background-color': '#E8EAED' }"
-      (click)="setBg('#E8EAED')"
-    ></mat-chip-option>
-  </mat-chip-listbox>
-</mat-card>

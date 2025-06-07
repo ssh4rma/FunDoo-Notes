@@ -67,6 +67,7 @@ mat-toolbar {
 
 .icon {
   color: #5f6368;
+  height: 20px;
 }
 
 .example-container {
@@ -75,22 +76,20 @@ mat-toolbar {
 }
 
 .example-sidenav {
-  width: 240px;
+  width: 190px;
   transition: width 0.3s ease, padding 0.3s ease;
   overflow-x: hidden;
-  padding: 20px;
-  box-sizing: border-box;
 }
 
 .example-sidenav.collapsed {
   width: 90px;
-  padding: 20px 8px;
+  /* padding: 20px 8px; */
 }
 
 .sidenav-icons {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  /* gap: 20px; */
 }
 
 .sidenav-icons button {
@@ -105,7 +104,6 @@ mat-toolbar {
 
 .example-sidenav.collapsed #sidenav-icons {
   align-items: center;
-  margin-left: 10px;
   overflow: hidden;
 }
 
@@ -138,7 +136,7 @@ mat-toolbar {
 }
 
 .sidenav-icons.expanded {
-  margin-right: 100px;
+  margin-right: 10px;
 }
 
 #side-nav-icon.expanded {

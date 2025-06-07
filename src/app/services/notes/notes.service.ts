@@ -37,7 +37,6 @@ export class NotesService {
 
     return this.http.getApi(URL, { headers }).subscribe({
       next: (res: any) => {
-        // console.log(res);
         this.notesSubject.next(res.data.data as Note[]);
       },
       error: (err) => console.log(err),

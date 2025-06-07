@@ -1,6 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class HttpserviceService {
@@ -12,11 +11,11 @@ export class HttpserviceService {
     this.token = localStorage.getItem('token') || '';
   }
 
-  getApi(url: string, options: any = {}): Observable<any> {
+  getApi(url: string, options: any = {}) {
     return this.http.get(url, options);
   }
 
-  postApi(url: string, body: any, options: any = {}): Observable<any> {
+  postApi(url: string, body: any, options: any = {}) {
     return this.http.post(url, body, options);
   }
 }
