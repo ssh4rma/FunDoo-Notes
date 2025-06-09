@@ -21,22 +21,19 @@ import { NotesComponent } from '../notes/notes.component';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent {
-  showFiller = false;
   showMenu = false;
   isSideNavOpened = false;
+  opened = true;
+  listView = true;
 
-  selectedIndex: number = 0;
   hoveredIndex: number | null = null;
+  selectedIndex: number = 0;
 
   toggleMenu(): void {
     this.showMenu = !this.showMenu;
   }
 
-  sideNavItems = [
-    { icon: 'lightbulb', label: 'Notes' },
-    { icon: 'notifications', label: 'Reminders' },
-    { icon: 'edit', label: 'Add Label' },
-    { icon: 'archive', label: 'Archive' },
-    { icon: 'delete', label: 'Trash' },
-  ];
+  toggleView(): void {
+    this.listView = !this.listView;
+  }
 }

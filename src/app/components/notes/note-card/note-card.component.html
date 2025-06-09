@@ -1,5 +1,5 @@
 <section *ngIf="notes$ | async as notes; else loading">
-  <div class="notes-card">
+  <div *ngIf="view === 'listView'" class="list-notes-card">
     <mat-card
       class="card"
       *ngFor="let note of notes.slice().reverse()"
@@ -12,19 +12,48 @@
       <mat-card-content>
         <p>{{ note.description }}</p>
       </mat-card-content>
-      <app-icons
-        class="icons"
-        [ngStyle]=""
-        [formatBtn]="false"
-        [colorPalette]="true"
-        [notification]="true"
-        [collaborator]="true"
-        [image]="true"
-        [archive]="true"
-        [threeDots]="true"
-        [undo]="false"
-        [redo]="false"
-      />
+      <div class="icons">
+        <app-icons
+          [formatBtn]="false"
+          [colorPalette]="true"
+          [notification]="true"
+          [collaborator]="true"
+          [image]="true"
+          [archive]="true"
+          [threeDots]="true"
+          [undo]="false"
+          [redo]="false"
+        />
+      </div>
+    </mat-card>
+  </div>
+
+  <div *ngIf="view === 'gridView'" class="grid-notes-card">
+    <mat-card
+      class="card"
+      *ngFor="let note of notes.slice().reverse()"
+      [ngStyle]="{ 'background-color': note.color }"
+    >
+      <mat-card-header>
+        <mat-card-title>{{ note.title }}</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p>{{ note.description }}</p>
+      </mat-card-content>
+      <div class="icons">
+        <app-icons
+          [formatBtn]="false"
+          [colorPalette]="true"
+          [notification]="true"
+          [collaborator]="true"
+          [image]="true"
+          [archive]="true"
+          [threeDots]="true"
+          [undo]="false"
+          [redo]="false"
+        />
+      </div>
     </mat-card>
   </div>
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NotesService } from 'src/app/services/notes/notes.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -19,6 +19,7 @@ import { IconsComponent } from '../icons/icons.component';
 })
 export class NoteCardComponent implements OnInit {
   notes$ = this.notesService.notes$;
+  @Input() view: string = '';
 
   constructor(private notesService: NotesService) {}
 

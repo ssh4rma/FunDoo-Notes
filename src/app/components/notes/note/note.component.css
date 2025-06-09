@@ -1,34 +1,42 @@
 .card {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
 mat-card {
-  width: 45%;
+  width: 100%;
+  max-width: 600px;
   margin: auto;
-  margin-top: 40px;
+  margin-top: 30px;
   height: 50px;
   border: inset transparent 2px;
   border-radius: 10px;
   margin-bottom: 50px;
 }
 
-mat-card-content {
+/* mat-card-content {
   padding: 12px 16px 12px 16px;
-}
+} */
 
-.left-side {
+/* .left-side {
   flex: 1;
 }
 
 .right-side {
   flex: 0.2;
-}
+} */
 
 .right-side-icons {
   display: flex;
   gap: 30px;
   color: gray;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin-bottom: 10px;
 }
 
 p {
@@ -68,23 +76,29 @@ p {
   outline: none;
 }
 
-/* .top-content {
+.top-content {
   display: flex;
   flex-direction: row;
+  gap: 45%;
 }
 
-#titleBar {
-  flex: 1;
+.pin-icon {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  right: 0px;
 }
-
-#pin-icon {
-  flex: 0.2;
-} */
 
 #bottom-icons-tab {
   margin-top: 30px;
 }
 
+#titleBar,
+#takeNoteBar {
+  width: 100%;
+  font-size: large;
+}
+/* 
 @media (max-width: 635px) {
   #titleBar,
   #takeNoteBar {
@@ -95,13 +109,6 @@ p {
 @media (max-width: 350px) {
   #titleBar,
   #takeNoteBar {
-    visibility: hidden;
-    position: absolute;
-  }
-}
-
-@media (max-width: 730px) {
-  .right-side-icons {
     visibility: hidden;
     position: absolute;
   }
@@ -118,4 +125,4 @@ p {
   #takeNoteBar {
     width: 100px;
   }
-}
+} */

@@ -24,6 +24,7 @@ export class NoteComponent {
   constructor(private eRef: ElementRef, private notesService: NotesService) {}
   expandNote = false;
 
+  pinView = false;
   // now take data from the user
   title = '';
   description = '';
@@ -73,5 +74,9 @@ export class NoteComponent {
 
   setBgColor(event: string): void {
     this.bgColor = event;
+  }
+
+  togglePin(): void {
+    this.pinView = !this.pinView;
   }
 }

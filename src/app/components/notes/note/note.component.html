@@ -23,15 +23,32 @@
 >
   <mat-card-content id="AddCardContent">
     <div class="top-content">
-      <input
-        type="text"
-        id="titleBar"
-        placeholder="Title"
-        value="title"
-        [(ngModel)]="title"
-        [ngStyle]="{ 'background-color': bgColor }"
-      />
-      <mat-icon fontIcon="keep_off"></mat-icon>
+      <div class="top-input-div">
+        <input
+          type="text"
+          id="titleBar"
+          placeholder="Title"
+          value="title"
+          [(ngModel)]="title"
+          [ngStyle]="{ 'background-color': bgColor }"
+        />
+      </div>
+      <div class="pin-icon-div">
+        <button
+          class="pin-icon"
+          (click)="togglePin()"
+          [ngStyle]="{ display: pinView ? 'none' : 'inline-flex' }"
+        >
+          <mat-icon>keep_off</mat-icon>
+        </button>
+        <button
+          class="pin-icon"
+          (click)="togglePin()"
+          [ngStyle]="{ display: pinView ? 'inline-flex' : 'none' }"
+        >
+          <mat-icon>keep_on</mat-icon>
+        </button>
+      </div>
     </div>
     <input
       type="text"
