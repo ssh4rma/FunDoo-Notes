@@ -24,9 +24,11 @@ export class NoteComponent {
   constructor(private eRef: ElementRef, private notesService: NotesService) {}
   expandNote = false;
 
+  pinView = false;
   // now take data from the user
   title = '';
   description = '';
+  bgColor = '';
 
   //the component will collapse when there's click outside of the component
   @HostListener('document:click', ['$event'])
@@ -40,11 +42,13 @@ export class NoteComponent {
           description: this.description,
           isArchived: false,
           isPined: false,
+          color: this.bgColor,
         };
 
         this.notesService.postNote(newNote).subscribe({
           next: (res: any) => {
             console.log(res);
+            this.notesService.getNotes(); //after adding notes, getNotes() for real time data
           },
           error: (err) => {
             console.error(err);
@@ -56,6 +60,7 @@ export class NoteComponent {
       }
 
       this.expandNote = false;
+      this.bgColor = '';
     }
   }
 
@@ -65,5 +70,13 @@ export class NoteComponent {
 
   dataFromCloseBtn(event: boolean): void {
     this.expandNote = event;
+  }
+
+  setBgColor(event: string): void {
+    this.bgColor = event;
+  }
+
+  togglePin(): void {
+    this.pinView = !this.pinView;
   }
 }

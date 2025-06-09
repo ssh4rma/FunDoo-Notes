@@ -1,0 +1,34 @@
+.list-notes-card {
+  margin: auto;
+  width: 100%;
+  max-width: 600px;
+}
+
+mat-card-title,
+mat-card-content p {
+  word-break: break-word;
+}
+
+.card {
+  margin-bottom: 20px;
+  height: 200px;
+  border-radius: 10px;
+}
+
+.icons {
+  visibility: hidden;
+  margin-top: 90px;
+}
+
+.list-notes-card:hover .icons,
+.grid-notes-card:hover .icons {
+  visibility: visible;
+}
+
+.grid-notes-card {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-left: 50px;
+}

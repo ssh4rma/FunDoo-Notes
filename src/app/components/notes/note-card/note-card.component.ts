@@ -1,18 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NotesService } from 'src/app/services/notes/notes.service';
-import { Note } from 'src/app/models/note.model';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCardModule } from '@angular/material/card';
+import { IconsComponent } from '../icons/icons.component';
 
 @Component({
   selector: 'app-note-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    MatProgressSpinnerModule,
+    MatCardModule,
+    IconsComponent,
+  ],
   templateUrl: './note-card.component.html',
   styleUrls: ['./note-card.component.css'],
 })
-export class NoteCardComponent {
-  //onInit() karke sari notes get karlo then save it in an array : any then using @for display it in card one by one and arrange them in flex (row) and column (grid button using @Output)
+export class NoteCardComponent implements OnInit {
+  notes$ = this.notesService.notes$;
+  @Input() view: string = '';
 
-  notes: Note[] = [];
   constructor(private notesService: NotesService) {}
+
+  ngOnInit(): void {
+    this.notesService.getNotes();
+  }
 }

@@ -1,34 +1,58 @@
 <div class="icons">
   <div class="left-icon">
-    <button class="icon-btn" id="textFormat">
+    <button *ngIf="formatBtn" class="icon-btn" id="textFormat">
       <mat-icon class="icon">text_format</mat-icon>
     </button>
-    <button class="icon-btn" id="palette">
-      <mat-icon class="icon">palette</mat-icon>
-    </button>
-    <button class="icon-btn" id="notification">
+
+    <div class="palette-wrapper" *ngIf="colorPalette">
+      <button
+        class="icon-btn"
+        id="palette"
+        (click)="showPalette = !showPalette"
+      >
+        <mat-icon class="icon">palette</mat-icon>
+      </button>
+
+      <mat-card *ngIf="showPalette && disableBtn" class="palette-card">
+        <div
+          *ngFor="let color of colors"
+          class="palette-color"
+          [ngStyle]="{ 'background-color': color }"
+          (click)="setBg(color)"
+        ></div>
+      </mat-card>
+    </div>
+
+    <button *ngIf="notification" class="icon-btn" id="notification">
       <mat-icon class="icon">notification_important</mat-icon>
     </button>
-    <button class="icon-btn" id="collaborator">
+
+    <button *ngIf="collaborator" class="icon-btn" id="collaborator">
       <mat-icon class="icon">person_add</mat-icon>
     </button>
-    <button class="icon-btn" id="image">
+
+    <button *ngIf="image" class="icon-btn" id="image">
       <mat-icon class="icon">image</mat-icon>
     </button>
-    <button class="icon-btn" id="archive">
+
+    <button *ngIf="archive" class="icon-btn" id="archive">
       <mat-icon class="icon">archive</mat-icon>
     </button>
-    <button class="icon-btn" id="three-dots">
+
+    <button *ngIf="threeDots" class="icon-btn" id="three-dots">
       <mat-icon class="icon">more_vert</mat-icon>
     </button>
-    <button class="icon-btn" id="undo">
+
+    <button *ngIf="undo" class="icon-btn" id="undo">
       <mat-icon class="icon">undo</mat-icon>
     </button>
-    <button class="icon-btn" id="redo">
+
+    <button *ngIf="redo" class="icon-btn" id="redo">
       <mat-icon class="icon">redo</mat-icon>
     </button>
-  </div>
-  <div class="right-icon">
-    <button id="close-btn" (click)="closeBox()">Close</button>
+
+    <button *ngIf="closeButton" id="close-btn" (click)="closeBox()">
+      Close
+    </button>
   </div>
 </div>

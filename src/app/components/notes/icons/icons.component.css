@@ -1,13 +1,24 @@
 .icons {
-  display: flex;
+  /* display: flex;
   flex-direction: row;
   gap: 80px;
   color: #5f6368;
   width: 45%;
+  position: relative; */
+
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  /* margin-top: 40px; */
+  height: auto;
+  border: inset transparent 2px;
+  border-radius: 10px;
+  /* margin-bottom: 50px; */
 }
 
 .icon {
   font-size: 20px;
+  z-index: -1;
 }
 
 .left-icon {
@@ -21,7 +32,6 @@
   outline: none;
   background-color: transparent;
   font-size: 15px;
-  margin-top: 10px;
 }
 
 #close-btn:hover {
@@ -40,7 +50,38 @@
   border-radius: 50%;
 }
 
-@media (max-width: 1400px) {
+.palette-wrapper {
+  position: relative;
+}
+
+.palette-card {
+  position: absolute;
+  top: 29px;
+  left: 10px;
+  background-color: white;
+  padding: 8px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  width: auto;
+}
+
+.palette-color {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.palette-color:hover {
+  border-color: #666;
+}
+
+/* @media (max-width: 1400px) {
   #undo,
   #redo {
     visibility: hidden;
@@ -83,4 +124,4 @@
     visibility: hidden;
     position: absolute;
   }
-}
+} */
