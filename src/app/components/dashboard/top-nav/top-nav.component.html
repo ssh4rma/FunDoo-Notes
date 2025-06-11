@@ -1,0 +1,63 @@
+<mat-toolbar>
+  <div class="nav-bar">
+    <div class="left-section">
+      <button
+        mat-icon-button
+        aria-label="Menu"
+        (click)="toggleSidenav.emit()"
+        id="menu-btn"
+        style="margin-right: 40px"
+      >
+        <mat-icon style="color: #5f6368">menu</mat-icon>
+      </button>
+      <img
+        id="google-keep-logo"
+        src="../../../assets/google_keep_logo.png"
+        alt="logo"
+      />
+      <span style="color: #5f6368">Keep</span>
+    </div>
+
+    <div class="search-bar">
+      <mat-icon class="serach-icon" matPrefix>search</mat-icon>
+      <input matInput placeholder="Search" />
+    </div>
+
+    <div class="right-side-icons">
+      <button id="refresh" class="icon" mat-icon-button>
+        <mat-icon>refresh</mat-icon>
+      </button>
+
+      <button
+        id="list-btn"
+        class="icon"
+        mat-icon-button
+        (click)="toggleView.emit()"
+        [ngStyle]="{ display: listView ? 'none' : 'inline-flex' }"
+      >
+        <mat-icon>view_stream</mat-icon>
+      </button>
+
+      <button
+        id="grid-btn"
+        class="icon"
+        mat-icon-button
+        (click)="toggleView.emit()"
+        [ngStyle]="{ display: listView ? 'inline-flex' : 'none' }"
+      >
+        <mat-icon>grid_view</mat-icon>
+      </button>
+
+      <button id="setting" class="icon" mat-icon-button>
+        <mat-icon>settings</mat-icon>
+      </button>
+    </div>
+
+    <div class="right-most-icons">
+      <button id="apps" class="icon" mat-icon-button>
+        <mat-icon>apps</mat-icon>
+      </button>
+      <button class="icon" mat-icon-button><mat-icon>person</mat-icon></button>
+    </div>
+  </div>
+</mat-toolbar>

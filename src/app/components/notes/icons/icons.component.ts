@@ -4,6 +4,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
+import { ArchiveService } from 'src/app/services/archive/archive.service';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-icons',
@@ -14,11 +17,15 @@ import { MatCardModule } from '@angular/material/card';
     MatChipsModule,
     FormsModule,
     MatCardModule,
+    MatMenuModule,
+    MatButtonModule,
   ],
   templateUrl: './icons.component.html',
   styleUrls: ['./icons.component.css'],
 })
 export class IconsComponent {
+  constructor(private archiveService: ArchiveService) {}
+
   @Output() closeBtn = new EventEmitter();
   @Output() bgColor = new EventEmitter();
 
@@ -34,7 +41,10 @@ export class IconsComponent {
   @Input() closeButton = false;
   @Input() disableBtn = false;
 
+  @Input() note: any;
+
   colors: string[] = [
+    '#ffffff',
     '#F28B82',
     '#FBBC04',
     '#FFF475',
@@ -56,5 +66,25 @@ export class IconsComponent {
 
   closeBox(): void {
     this.closeBtn.emit(false);
+  }
+
+  onArchiveClick() {
+    let noteIdList = this.note.id;
+    let data: any = {
+      noteIdList: [noteIdList],
+      isArchived: true,
+    };
+
+    if (this.note) {
+      this.archiveService.postArchiveNote(data).subscribe({
+        next: (res: any) => {
+          // console.log(res);
+          // console.log('posted archive note successful');
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+    }
   }
 }

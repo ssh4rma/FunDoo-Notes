@@ -1,0 +1,14 @@
+.card-container {
+  margin-top: 30px;
+  margin: auto;
+  max-width: 600px;
+}
+
+.card {
+  margin-bottom: 30px;
+  height: 150px;
+}
+
+.icons {
+  margin-top: 40px;
+}

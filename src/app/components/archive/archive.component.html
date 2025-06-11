@@ -1,0 +1,38 @@
+<div
+  *ngIf="notes.length; else noArchivedNotes"
+  [ngStyle]="{ 'margin-top': '90px' }"
+>
+  <div *ngFor="let note of notes" class="card-container">
+    <mat-card
+      class="card"
+      [ngStyle]="{ 'background-color': note.color || '#fff' }"
+    >
+      <mat-card-header>
+        <mat-card-title>{{ note.title }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ note.description }}</p>
+      </mat-card-content>
+
+      <div class="icons">
+        <app-icons
+          [formatBtn]="false"
+          [colorPalette]="true"
+          [notification]="true"
+          [collaborator]="true"
+          [image]="true"
+          [archive]="true"
+          [threeDots]="false"
+          [undo]="false"
+          [redo]="false"
+          [disableBtn]="false"
+          [closeButton]="false"
+        />
+      </div>
+    </mat-card>
+  </div>
+</div>
+
+<ng-template #noArchivedNotes>
+  <p>No archived notes yet.</p>
+</ng-template>

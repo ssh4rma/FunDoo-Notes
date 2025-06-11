@@ -11,7 +11,7 @@ mat-card {
   width: 100%;
   max-width: 600px;
   margin: auto;
-  margin-top: 30px;
+  margin-top: 90px;
   height: 50px;
   border: inset transparent 2px;
   border-radius: 10px;
@@ -90,7 +90,8 @@ p {
 }
 
 #bottom-icons-tab {
-  margin-top: 30px;
+  margin-top: 20px;
+  margin-right: 20px;
 }
 
 #titleBar,
@@ -126,3 +127,10 @@ p {
     width: 100px;
   }
 } */
+
+@media (max-width: 360px) {
+  .right-side-icons {
+    visibility: hidden;
+    position: absolute;
+  }
+}

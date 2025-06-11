@@ -1,5 +1,6 @@
+<!-- *ngIf="view === 'listView'"  -->
 <section *ngIf="notes$ | async as notes; else loading">
-  <div *ngIf="view === 'listView'" class="list-notes-card">
+  <div class="list-notes-card">
     <mat-card
       class="card"
       *ngFor="let note of notes.slice().reverse()"
@@ -23,6 +24,7 @@
           [threeDots]="true"
           [undo]="false"
           [redo]="false"
+          [note]="note"
         />
       </div>
     </mat-card>
@@ -52,6 +54,8 @@
           [threeDots]="true"
           [undo]="false"
           [redo]="false"
+          [note]="note"
+          x
         />
       </div>
     </mat-card>
