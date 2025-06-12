@@ -25,5 +25,5 @@ import { FormsModule } from '@angular/forms';
 export class TopNavComponent {
   @Input() listView!: boolean;
   @Output() toggleSidenav = new EventEmitter<void>();
-  @Output() toggleView = new EventEmitter<void>();
+  @Output() toggleView = new EventEmitter<string>();
 }

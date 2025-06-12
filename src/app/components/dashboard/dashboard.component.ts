@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet, Router } from '@angular/router';
 import { TopNavComponent } from './top-nav/top-nav.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
-import { NotesComponent } from '../notes/notes.component';
+import { DashboardDataService } from 'src/app/services/dashboard-data/dashboard-data.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,16 +13,26 @@ import { NotesComponent } from '../notes/notes.component';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private dashboardData: DashboardDataService
+  ) {}
 
   isSideNavOpened = false;
-  listView = true;
+  listView = false;
+
+  // view = '';
+  // changeView(): void {}
 
   hoveredIndex: number | null = null;
   selectedIndex = 0;
 
-  toggleView(): void {
+  toggleView(view: string): void {
     this.listView = !this.listView;
+    // this.view = view;
+    this.dashboardData.setView(view);
+    // console.log(this.view);
+    // console.log(this.dashboardData.view$);
   }
 
   toggleSidenav(): void {

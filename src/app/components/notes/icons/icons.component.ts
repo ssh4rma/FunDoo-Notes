@@ -7,6 +7,8 @@ import { MatCardModule } from '@angular/material/card';
 import { ArchiveService } from 'src/app/services/archive/archive.service';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { NotesService } from 'src/app/services/notes/notes.service';
+import { TrashService } from 'src/app/services/trash/trash.service';
 
 @Component({
   selector: 'app-icons',
@@ -24,10 +26,19 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: ['./icons.component.css'],
 })
 export class IconsComponent {
-  constructor(private archiveService: ArchiveService) {}
+  constructor(
+    private archiveService: ArchiveService,
+    private notesService: NotesService,
+    private trashService: TrashService
+  ) {}
 
   @Output() closeBtn = new EventEmitter();
   @Output() bgColor = new EventEmitter();
+  @Output() isArchivedClickHandler = new EventEmitter<boolean>();
+  @Output() unarchiveEvent = new EventEmitter();
+  @Output() deleteEvent = new EventEmitter();
+  @Output() delForeverEvent = new EventEmitter();
+  @Output() recoverEvent = new EventEmitter();
 
   @Input() formatBtn = false;
   @Input() colorPalette = false;
@@ -40,6 +51,12 @@ export class IconsComponent {
   @Input() redo = false;
   @Input() closeButton = false;
   @Input() disableBtn = false;
+  @Input() recoverBtn = false;
+  @Input() delForeverBtn = false;
+  @Input() menuBtn = false;
+  @Input() unarchive = false;
+
+  @Input() paletteInGrid = false;
 
   @Input() note: any;
 
@@ -60,6 +77,10 @@ export class IconsComponent {
 
   showPalette = false;
 
+  paletteHandleClick(): void {
+    this.showPalette = !this.showPalette;
+  }
+
   setBg(color: string): void {
     this.bgColor.emit(color);
   }
@@ -69,6 +90,8 @@ export class IconsComponent {
   }
 
   onArchiveClick() {
+    this.isArchivedClickHandler.emit(true);
+
     let noteIdList = this.note.id;
     let data: any = {
       noteIdList: [noteIdList],
@@ -80,11 +103,85 @@ export class IconsComponent {
         next: (res: any) => {
           // console.log(res);
           // console.log('posted archive note successful');
+          this.notesService.getNotes();
         },
         error: (err) => {
           console.log(err);
         },
       });
     }
+  }
+
+  onUnarchiveClick(): void {
+    let noteIdList = this.note.id;
+    let data: any = {
+      noteIdList: [noteIdList],
+      isArchived: false,
+    };
+
+    if (this.note) {
+      this.archiveService.postArchiveNote(data).subscribe({
+        next: () => {
+          this.unarchiveEvent.emit();
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+    }
+  }
+
+  deleteHandler(): void {
+    // console.log('delete pressed');
+    let noteIdList = this.note.id;
+    let data: any = {
+      noteIdList: [noteIdList],
+      isDeleted: true,
+    };
+
+    if (this.note) {
+      this.trashService.postTrashNote(data).subscribe({
+        next: () => {
+          this.deleteEvent.emit();
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+    }
+  }
+
+  deleteForeverClick(): void {
+    let noteIdList = this.note.id;
+    let data: any = {
+      noteIdList: [noteIdList],
+    };
+
+    this.trashService.postDeleteForever(data).subscribe({
+      next: () => {
+        this.delForeverEvent.emit();
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+
+  //post api with isDelete false
+  restoreClick(): void {
+    let noteIdList = this.note.id;
+    let data: any = {
+      noteIdList: [noteIdList],
+      isDeleted: false,
+    };
+
+    this.trashService.postTrashNote(data).subscribe({
+      next: () => {
+        this.recoverEvent.emit();
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 }

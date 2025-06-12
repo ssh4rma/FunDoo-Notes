@@ -1,18 +1,40 @@
-<div
-  *ngIf="notes.length; else noArchivedNotes"
-  [ngStyle]="{ 'margin-top': '90px' }"
->
-  <div *ngFor="let note of notes" class="card-container">
-    <mat-card
-      class="card"
-      [ngStyle]="{ 'background-color': note.color || '#fff' }"
-    >
-      <mat-card-header>
-        <mat-card-title>{{ note.title }}</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p>{{ note.description }}</p>
-      </mat-card-content>
+<!-- LIST VIEW -->
+<div *ngIf="view === 'listview'" class="list-notes-card">
+  <mat-card
+    class="list-card"
+    *ngFor="let note of notes"
+    [ngStyle]="{ 'background-color': note.color || '#fff' }"
+  >
+    <div class="content">
+      <div class="top-bar">
+        <div class="title-list">
+          <h2>{{ note.title }}</h2>
+        </div>
+
+        <!-- Pin Toggle Buttons -->
+        <div class="pin-icon-div">
+          <button
+            class="icons"
+            id="pin-btn"
+            (click)="note.isPined = true"
+            [ngStyle]="{ display: note.isPined ? 'none' : 'inline-flex' }"
+          >
+            <mat-icon>keep_off</mat-icon>
+          </button>
+          <button
+            class="icons"
+            id="pin-btn"
+            (click)="note.isPined = false"
+            [ngStyle]="{ display: note.isPined ? 'inline-flex' : 'none' }"
+          >
+            <mat-icon>keep_on</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <div class="description-list">
+        <p class="para">{{ note.description }}</p>
+      </div>
 
       <div class="icons">
         <app-icons
@@ -21,18 +43,79 @@
           [notification]="true"
           [collaborator]="true"
           [image]="true"
-          [archive]="true"
-          [threeDots]="false"
+          [archive]="false"
+          [unarchive]="true"
+          [threeDots]="true"
           [undo]="false"
           [redo]="false"
-          [disableBtn]="false"
-          [closeButton]="false"
+          [note]="note"
+          (bgColor)="bgHandler($event, note)"
+          [menuBtn]="true"
+          (unarchiveEvent)="refreshNotes()"
+          (deleteEvent)="refreshNotesAfterDelete()"
         />
       </div>
-    </mat-card>
-  </div>
+    </div>
+  </mat-card>
 </div>
 
-<ng-template #noArchivedNotes>
-  <p>No archived notes yet.</p>
-</ng-template>
+<!-- GRID VIEW -->
+<div *ngIf="view === 'gridview'" class="grid-notes-card">
+  <mat-card
+    class="grid-card"
+    *ngFor="let note of notes"
+    [ngStyle]="{ 'background-color': note.color || '#fff' }"
+  >
+    <div class="content">
+      <div class="top-bar-grid">
+        <div class="title-grid">
+          <h2>{{ note.title }}</h2>
+        </div>
+
+        <!-- Pin Toggle Buttons -->
+        <div class="pin-icon-div">
+          <button
+            class="icons"
+            id="pin-btn"
+            (click)="note.isPined = true"
+            [ngStyle]="{ display: note.isPined ? 'none' : 'inline-flex' }"
+          >
+            <mat-icon>keep_off</mat-icon>
+          </button>
+          <button
+            class="icons"
+            id="pin-btn"
+            (click)="note.isPined = false"
+            [ngStyle]="{ display: note.isPined ? 'inline-flex' : 'none' }"
+          >
+            <mat-icon>keep_on</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <div class="description-grid">
+        <p class="para">{{ note.description }}</p>
+      </div>
+
+      <div class="icons">
+        <app-icons
+          [formatBtn]="false"
+          [colorPalette]="true"
+          [notification]="true"
+          [collaborator]="true"
+          [image]="true"
+          [unarchive]="true"
+          [threeDots]="true"
+          [undo]="false"
+          [redo]="false"
+          [note]="note"
+          (bgColor)="bgHandler($event, note)"
+          [paletteInGrid]="true"
+          [menuBtn]="true"
+          (unarchiveEvent)="refreshNotes()"
+          (deleteEvent)="refreshNotesAfterDelete()"
+        />
+      </div>
+    </div>
+  </mat-card>
+</div>

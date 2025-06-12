@@ -4,4 +4,5 @@ export interface Note {
   isPined: boolean;
   isArchived: boolean;
   color: string;
+  isDeleted: boolean;
 }

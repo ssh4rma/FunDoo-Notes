@@ -1,95 +1,147 @@
-<div class="icons">
-  <div class="left-icon">
-    <button *ngIf="formatBtn" class="icon-btn" id="textFormat" mat-icon-button>
-      <mat-icon class="icon">text_format</mat-icon>
-    </button>
+<div class="upper-btn"></div>
 
-    <div class="palette-wrapper" *ngIf="colorPalette">
+<div class="bottom-btn">
+  <div class="icons">
+    <div class="left-icon">
       <button
+        *ngIf="formatBtn"
         class="icon-btn"
-        id="palette"
-        (click)="showPalette = !showPalette"
+        id="textFormat"
         mat-icon-button
       >
-        <mat-icon class="icon">palette</mat-icon>
+        <mat-icon class="icon">text_format</mat-icon>
       </button>
 
-      <mat-card *ngIf="showPalette && disableBtn" class="palette-card">
-        <div
-          *ngFor="let color of colors"
-          class="palette-color"
-          [ngStyle]="{ 'background-color': color }"
-          (click)="setBg(color)"
-        ></div>
-      </mat-card>
+      <div class="palette-wrapper" *ngIf="colorPalette">
+        <button
+          class="icon-btn"
+          (click)="paletteHandleClick()"
+          mat-icon-button
+          [ngClass]="{ 'unarchive-margin': unarchive }"
+        >
+          <mat-icon id="palette-icon">palette</mat-icon>
+        </button>
+
+        <mat-card *ngIf="showPalette && !paletteInGrid" class="palette-card">
+          <div
+            *ngFor="let color of colors"
+            class="palette-color"
+            [ngStyle]="{ 'background-color': color }"
+            (click)="setBg(color)"
+          ></div>
+        </mat-card>
+
+        <mat-card
+          *ngIf="showPalette && paletteInGrid"
+          class="palette-grid-card"
+        >
+          <div
+            *ngFor="let color of colors"
+            class="palette-color"
+            [ngStyle]="{ 'background-color': color }"
+            (click)="setBg(color)"
+          ></div>
+        </mat-card>
+      </div>
+
+      <button
+        *ngIf="notification"
+        class="icon-btn"
+        id="notification"
+        mat-icon-button
+      >
+        <mat-icon class="icon">notification_important</mat-icon>
+      </button>
+
+      <button
+        *ngIf="collaborator"
+        class="icon-btn"
+        id="collaborator"
+        mat-icon-button
+      >
+        <mat-icon class="icon">person_add</mat-icon>
+      </button>
+
+      <button *ngIf="image" class="icon-btn" id="image" mat-icon-button>
+        <mat-icon class="icon">image</mat-icon>
+      </button>
+
+      <button
+        mat-icon-button
+        *ngIf="archive"
+        class="icon-btn"
+        id="archive"
+        (click)="onArchiveClick()"
+      >
+        <mat-icon class="icon">archive</mat-icon>
+      </button>
+
+      <button
+        mat-icon-button
+        class="icon-btn"
+        id="unarchive"
+        *ngIf="unarchive"
+        (click)="onUnarchiveClick()"
+      >
+        <mat-icon>unarchive</mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu" id="threeDots-menu">
+        <button (click)="deleteHandler()" mat-menu-item>Delete Note</button>
+        <button mat-menu-item>Add Label</button>
+        <button mat-menu-item>Add Drawing</button>
+        <button mat-menu-item>Make a copy</button>
+        <button mat-menu-item>Show Checkboxes</button>
+        <button mat-menu-item>Copy to Google Docs</button>
+        <button mat-menu-item>Version History</button>
+      </mat-menu>
+
+      <button
+        *ngIf="menuBtn"
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        id="threeDots"
+        class="icon-btn"
+      >
+        <mat-icon class="icon">more_vert</mat-icon>
+      </button>
+
+      <button *ngIf="undo" class="icon-btn" id="undo" mat-icon-button>
+        <mat-icon class="icon">undo</mat-icon>
+      </button>
+
+      <button *ngIf="redo" class="icon-btn" id="redo" mat-icon-button>
+        <mat-icon class="icon">redo</mat-icon>
+      </button>
+
+      <!-- del btns -->
+      <button
+        (click)="deleteForeverClick()"
+        *ngIf="delForeverBtn"
+        class="icon-btn"
+        id="delForever"
+      >
+        <mat-icon>delete_forever</mat-icon>
+      </button>
+      <button
+        (click)="restoreClick()"
+        *ngIf="recoverBtn"
+        class="icon-btn"
+        id="recoverBtn"
+      >
+        <mat-icon>restore_from_trash</mat-icon>
+      </button>
     </div>
 
-    <button
-      *ngIf="notification"
-      class="icon-btn"
-      id="notification"
-      mat-icon-button
-    >
-      <mat-icon class="icon">notification_important</mat-icon>
-    </button>
-
-    <button
-      *ngIf="collaborator"
-      class="icon-btn"
-      id="collaborator"
-      mat-icon-button
-    >
-      <mat-icon class="icon">person_add</mat-icon>
-    </button>
-
-    <button *ngIf="image" class="icon-btn" id="image" mat-icon-button>
-      <mat-icon class="icon">image</mat-icon>
-    </button>
-
-    <button
-      mat-icon-button
-      *ngIf="archive"
-      class="icon-btn"
-      id="archive"
-      (click)="onArchiveClick()"
-    >
-      <mat-icon class="icon">archive</mat-icon>
-    </button>
-
-    <mat-menu #menu="matMenu" id="threeDots-menu">
-      <button mat-menu-item>Delete Note</button>
-      <button mat-menu-item>Add Label</button>
-      <button mat-menu-item>Add Drawing</button>
-      <button mat-menu-item>Make a copy</button>
-      <button mat-menu-item>Show Checkboxes</button>
-      <button mat-menu-item>Copy to Google Docs</button>
-      <button mat-menu-item>Version History</button>
-    </mat-menu>
-
-    <button
-      mat-icon-button
-      [matMenuTriggerFor]="menu"
-      aria-label="Example icon-button with a menu"
-      id="threeDots"
-    >
-      <mat-icon>more_vert</mat-icon>
-    </button>
-
-    <button *ngIf="undo" class="icon-btn" id="undo" mat-icon-button>
-      <mat-icon class="icon">undo</mat-icon>
-    </button>
-
-    <button *ngIf="redo" class="icon-btn" id="redo" mat-icon-button>
-      <mat-icon class="icon">redo</mat-icon>
-    </button>
-
-    <button
-      *ngIf="closeButton"
-      class="close-btn"
-      (click)="closeBox()"
-      mat-icon-button
-    >
-      Close
-    </button>
+    <div class="close-btn-div">
+      <button
+        *ngIf="closeButton"
+        class="close-btn"
+        (click)="closeBox()"
+        mat-icon-button
+      >
+        Close
+      </button>
+    </div>
   </div>
 </div>

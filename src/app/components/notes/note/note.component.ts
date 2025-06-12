@@ -6,6 +6,8 @@ import { IconsComponent } from '../icons/icons.component';
 import { FormsModule } from '@angular/forms';
 import { Note } from '../../../models/note.model';
 import { NotesService } from 'src/app/services/notes/notes.service';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-note',
@@ -16,6 +18,8 @@ import { NotesService } from 'src/app/services/notes/notes.service';
     MatIconModule,
     IconsComponent,
     FormsModule,
+    MatInputModule,
+    MatSelectModule,
   ],
   templateUrl: './note.component.html',
   styleUrls: ['./note.component.css'],
@@ -25,6 +29,7 @@ export class NoteComponent {
   expandNote = false;
 
   pinView = false;
+  isArchive = false;
   // now take data from the user
   title = '';
   description = '';
@@ -40,9 +45,10 @@ export class NoteComponent {
         const newNote: Note = {
           title: this.title,
           description: this.description,
-          isArchived: false,
-          isPined: false,
+          isArchived: this.isArchive ? true : false,
+          isPined: this.pinView ? true : false,
           color: this.bgColor,
+          isDeleted: false,
         };
 
         this.notesService.postNote(newNote).subscribe({
@@ -78,5 +84,9 @@ export class NoteComponent {
 
   togglePin(): void {
     this.pinView = !this.pinView;
+  }
+
+  isArchivedClickHandler(state: boolean): void {
+    this.isArchive = state;
   }
 }

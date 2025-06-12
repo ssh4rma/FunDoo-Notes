@@ -10,6 +10,4 @@ import { NoteCardComponent } from './note-card/note-card.component';
   templateUrl: './notes.component.html',
   styleUrls: ['./notes.component.css'],
 })
-export class NotesComponent {
-  @Input() view: string = '';
-}
+export class NotesComponent {}

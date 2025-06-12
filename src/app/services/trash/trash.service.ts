@@ -31,4 +31,15 @@ export class TrashService {
 
     return this.http.getApi(url, headers);
   }
+
+  postDeleteForever(data: any) {
+    this.http.getHeader();
+    let token = this.http.token;
+    let url = `https://fundoonotes.incubation.bridgelabz.com/api/notes/deleteForeverNotes?access_token=${token}`;
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    });
+    return this.http.postApi(url, data, headers);
+  }
 }

@@ -1,67 +1,262 @@
-<!-- *ngIf="view === 'listView'"  -->
 <section *ngIf="notes$ | async as notes; else loading">
-  <div class="list-notes-card">
+  <div
+    *ngIf="view === 'listview' && pinnedNotes.length > 0"
+    class="list-notes-card"
+  >
+    <h3 *ngIf="pinnedNotes.length > 0" style="color: #5f6368">PINNED NOTES</h3>
+
     <mat-card
-      class="card"
-      *ngFor="let note of notes.slice().reverse()"
+      class="list-card"
+      *ngFor="let note of pinnedNotes"
       [ngStyle]="{ 'background-color': note.color }"
     >
-      <mat-card-header>
-        <mat-card-title>{{ note.title }}</mat-card-title>
-      </mat-card-header>
+      <div class="content">
+        <div class="top-bar">
+          <div class="title-list">
+            <h2>{{ note.title }}</h2>
+          </div>
+          <div class="pin-icon-grid">
+            <button
+              id="pin-btn"
+              class="icons"
+              (click)="note.isPined = false; unpinHandler(note)"
+              [ngStyle]="{ display: note.isPined ? 'inline-flex' : 'none' }"
+            >
+              <mat-icon>keep_on</mat-icon>
+            </button>
+            <button
+              id="pin-btn"
+              class="icons"
+              (click)="note.isPined = true; pinHandler(note)"
+              [ngStyle]="{ display: note.isPined ? 'none' : 'inline-flex' }"
+            >
+              <mat-icon>keep_off</mat-icon>
+            </button>
+          </div>
+        </div>
 
-      <mat-card-content>
-        <p>{{ note.description }}</p>
-      </mat-card-content>
-      <div class="icons">
-        <app-icons
-          [formatBtn]="false"
-          [colorPalette]="true"
-          [notification]="true"
-          [collaborator]="true"
-          [image]="true"
-          [archive]="true"
-          [threeDots]="true"
-          [undo]="false"
-          [redo]="false"
-          [note]="note"
-        />
+        <div class="description-list">
+          <p class="para">{{ note.description }}</p>
+        </div>
+
+        <div class="icons">
+          <app-icons
+            [formatBtn]="false"
+            [colorPalette]="true"
+            [notification]="true"
+            [collaborator]="true"
+            [image]="true"
+            [archive]="true"
+            [threeDots]="true"
+            [undo]="false"
+            [redo]="false"
+            [note]="note"
+            (bgColor)="bgHandler($event, note)"
+            [menuBtn]="true"
+            (deleteEvent)="deleteHandler()"
+          />
+        </div>
       </div>
     </mat-card>
   </div>
 
-  <div *ngIf="view === 'gridView'" class="grid-notes-card">
+  <h3
+    *ngIf="pinnedNotes.length > 0 && view === 'gridview'"
+    style="color: #5f6368; margin-left: 200px"
+  >
+    PINNED NOTES
+  </h3>
+  <div
+    *ngIf="view === 'gridview' && pinnedNotes.length > 0"
+    class="grid-notes-card"
+  >
     <mat-card
-      class="card"
-      *ngFor="let note of notes.slice().reverse()"
+      class="grid-card"
+      *ngFor="let note of pinnedNotes"
       [ngStyle]="{ 'background-color': note.color }"
     >
-      <mat-card-header>
-        <mat-card-title>{{ note.title }}</mat-card-title>
-      </mat-card-header>
+      <div class="content">
+        <div class="top-bar-grid">
+          <div class="title-grid">
+            <h2>{{ note.title }}</h2>
+          </div>
+          <div class="pin-icon-grid">
+            <button
+              id="pin-btn"
+              class="icons"
+              (click)="note.isPined = false; unpinHandler(note)"
+              [ngStyle]="{ display: note.isPined ? 'inline-flex' : 'none' }"
+            >
+              <mat-icon>keep_on</mat-icon>
+            </button>
+            <button
+              id="pin-btn"
+              class="icons"
+              (click)="note.isPined = true; pinHandler(note)"
+              [ngStyle]="{ display: note.isPined ? 'none' : 'inline-flex' }"
+            >
+              <mat-icon>keep_off</mat-icon>
+            </button>
+          </div>
+        </div>
 
-      <mat-card-content>
-        <p>{{ note.description }}</p>
-      </mat-card-content>
-      <div class="icons">
-        <app-icons
-          [formatBtn]="false"
-          [colorPalette]="true"
-          [notification]="true"
-          [collaborator]="true"
-          [image]="true"
-          [archive]="true"
-          [threeDots]="true"
-          [undo]="false"
-          [redo]="false"
-          [note]="note"
-          x
-        />
+        <div class="description-grid">
+          <p class="para">{{ note.description }}</p>
+        </div>
+
+        <div class="icons">
+          <app-icons
+            [formatBtn]="false"
+            [colorPalette]="true"
+            [notification]="true"
+            [collaborator]="true"
+            [image]="true"
+            [archive]="true"
+            [threeDots]="true"
+            [undo]="false"
+            [redo]="false"
+            [note]="note"
+            (bgColor)="bgHandler($event, note)"
+            [paletteInGrid]="true"
+            [menuBtn]="true"
+            (deleteEvent)="deleteHandler()"
+          />
+        </div>
       </div>
     </mat-card>
   </div>
 
-  <p *ngIf="notes.length === 0">No notes yet.</p>
+  <div
+    *ngIf="view === 'listview' && unpinnedNotes.length > 0"
+    class="list-notes-card"
+  >
+    <h3 *ngIf="pinnedNotes.length > 0" style="color: #5f6368">
+      UNPINNED NOTES
+    </h3>
+    <mat-card
+      class="list-card"
+      *ngFor="let note of unpinnedNotes"
+      [ngStyle]="{ 'background-color': note.color }"
+    >
+      <div class="content">
+        <div class="top-bar">
+          <div class="title-list">
+            <h2>{{ note.title }}</h2>
+          </div>
+          <div class="pin-icon-div">
+            <button
+              id="pin-btn"
+              class="icons"
+              (click)="note.isPined = true; pinHandler(note)"
+              [ngStyle]="{ display: note.isPined ? 'none' : 'inline-flex' }"
+            >
+              <mat-icon>keep_off</mat-icon>
+            </button>
+            <button
+              id="pin-btn"
+              class="icons"
+              (click)="note.isPined = false; unpinHandler(note)"
+              [ngStyle]="{ display: note.isPined ? 'inline-flex' : 'none' }"
+            >
+              <mat-icon>keep_on</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="description-list">
+          <p class="para">{{ note.description }}</p>
+        </div>
+
+        <div class="icons">
+          <app-icons
+            [formatBtn]="false"
+            [colorPalette]="true"
+            [notification]="true"
+            [collaborator]="true"
+            [image]="true"
+            [archive]="true"
+            [threeDots]="true"
+            [undo]="false"
+            [redo]="false"
+            [note]="note"
+            (bgColor)="bgHandler($event, note)"
+            [menuBtn]="true"
+            (deleteEvent)="deleteHandler()"
+          />
+        </div>
+      </div>
+    </mat-card>
+  </div>
+
+  <h3
+    *ngIf="pinnedNotes.length > 0 && view === 'gridview'"
+    style="color: #5f6368; margin-left: 200px; margin-top: 20px"
+  >
+    UNPINNED NOTES
+  </h3>
+  <div
+    *ngIf="view === 'gridview' && unpinnedNotes.length > 0"
+    class="grid-notes-card"
+  >
+    <mat-card
+      class="grid-card"
+      *ngFor="let note of unpinnedNotes"
+      [ngStyle]="{ 'background-color': note.color }"
+    >
+      <div class="content">
+        <div class="top-bar-grid">
+          <div class="title-grid">
+            <h2>{{ note.title }}</h2>
+          </div>
+          <div class="pin-icon-grid">
+            <button
+              id="pin-btn"
+              class="icons"
+              (click)="note.isPined = true; pinHandler(note)"
+              [ngStyle]="{ display: note.isPined ? 'none' : 'inline-flex' }"
+            >
+              <mat-icon>keep_off</mat-icon>
+            </button>
+            <button
+              id="pin-btn"
+              class="icons"
+              (click)="note.isPined = false; unpinHandler(note)"
+              [ngStyle]="{ display: note.isPined ? 'inline-flex' : 'none' }"
+            >
+              <mat-icon>keep_on</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="description-grid">
+          <p class="para">{{ note.description }}</p>
+        </div>
+
+        <div class="icons">
+          <app-icons
+            [formatBtn]="false"
+            [colorPalette]="true"
+            [notification]="true"
+            [collaborator]="true"
+            [image]="true"
+            [archive]="true"
+            [threeDots]="true"
+            [undo]="false"
+            [redo]="false"
+            [note]="note"
+            (bgColor)="bgHandler($event, note)"
+            [paletteInGrid]="true"
+            [menuBtn]="true"
+            (deleteEvent)="deleteHandler()"
+          />
+        </div>
+      </div>
+    </mat-card>
+  </div>
+
+  <p *ngIf="pinnedNotes.length === 0 && unpinnedNotes.length === 0">
+    No notes yet.
+  </p>
 </section>
 
 <ng-template #loading>

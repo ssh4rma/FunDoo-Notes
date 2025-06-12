@@ -32,7 +32,7 @@
         id="list-btn"
         class="icon"
         mat-icon-button
-        (click)="toggleView.emit()"
+        (click)="toggleView.emit('gridview')"
         [ngStyle]="{ display: listView ? 'none' : 'inline-flex' }"
       >
         <mat-icon>view_stream</mat-icon>
@@ -42,7 +42,7 @@
         id="grid-btn"
         class="icon"
         mat-icon-button
-        (click)="toggleView.emit()"
+        (click)="toggleView.emit('listview')"
         [ngStyle]="{ display: listView ? 'inline-flex' : 'none' }"
       >
         <mat-icon>grid_view</mat-icon>

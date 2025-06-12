@@ -1,4 +1,8 @@
-<mat-card (click)="expand()" [ngClass]="{ defaultCard: expandNote }">
+<mat-card
+  id="collapsedNoteCard"
+  (click)="expand()"
+  [ngClass]="{ defaultCard: expandNote }"
+>
   <mat-card-content>
     <div class="card">
       <div class="left-side">
@@ -6,9 +10,15 @@
       </div>
       <div class="right-side">
         <div class="right-side-icons">
-          <mat-icon>check_box</mat-icon>
-          <mat-icon>brush</mat-icon>
-          <mat-icon>imagesmode</mat-icon>
+          <button mat-icon-button>
+            <mat-icon>check_box</mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon>brush</mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon>image</mat-icon>
+          </button>
         </div>
       </div>
     </div>
@@ -34,30 +44,31 @@
         />
       </div>
       <div class="pin-icon-div">
-        <button
-          class="pin-icon"
-          (click)="togglePin()"
-          [ngStyle]="{ display: pinView ? 'none' : 'inline-flex' }"
-        >
-          <mat-icon>keep_off</mat-icon>
-        </button>
-        <button
-          class="pin-icon"
-          (click)="togglePin()"
-          [ngStyle]="{ display: pinView ? 'inline-flex' : 'none' }"
-        >
-          <mat-icon>keep_on</mat-icon>
+        <button class="pin-icon" (click)="togglePin()">
+          <mat-icon>{{ pinView ? "keep_on" : "keep_off" }}</mat-icon>
         </button>
       </div>
     </div>
-    <input
-      type="text"
+
+    <textarea
       placeholder="Take a note..."
+      matInput
+      cdkTextareaAutosize
+      #autosize="cdkTextareaAutosize"
+      cdkAutosizeMinRows="1"
+      cdkAutosizeMaxRows="5"
       id="takeNoteBar"
       value="description"
       [(ngModel)]="description"
-      [ngStyle]="{ 'background-color': bgColor }"
-    />
+      [ngStyle]="{
+        'background-color': bgColor,
+        overflow: 'hidden',
+        'font-family': 'Roboto, sans-serif',
+        'font-size': '14px',
+        'margin-bottom': '20px'
+      }"
+    ></textarea>
+
     <div id="bottom-icons-tab">
       <app-icons
         (bgColor)="setBgColor($event)"
@@ -73,6 +84,8 @@
         [redo]="true"
         [disableBtn]="true"
         [closeButton]="true"
+        (isArchivedClickHandler)="isArchivedClickHandler($event)"
+        [menuBtn]="true"
       />
     </div>
   </mat-card-content>
