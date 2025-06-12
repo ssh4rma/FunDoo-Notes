@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { NotesService } from 'src/app/services/notes/notes.service';
 import { TrashService } from 'src/app/services/trash/trash.service';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-icons',
@@ -23,6 +24,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatMenuModule,
     MatButtonModule,
     MatTooltipModule,
+    MatSnackBarModule,
   ],
   templateUrl: './icons.component.html',
   styleUrls: ['./icons.component.css'],
@@ -31,7 +33,8 @@ export class IconsComponent {
   constructor(
     private archiveService: ArchiveService,
     private notesService: NotesService,
-    private trashService: TrashService
+    private trashService: TrashService,
+    private _snackBar: MatSnackBar
   ) {}
 
   @Output() closeBtn = new EventEmitter();
@@ -184,6 +187,12 @@ export class IconsComponent {
       error: (err) => {
         console.log(err);
       },
+    });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
     });
   }
 }

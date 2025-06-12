@@ -82,7 +82,7 @@
         class="icon-btn"
         id="archive"
         matTooltip="Archive"
-        (click)="onArchiveClick()"
+        (click)="onArchiveClick(); openSnackBar('Note Archived', 'OK')"
       >
         <mat-icon class="icon">archive</mat-icon>
       </button>
@@ -92,14 +92,19 @@
         class="icon-btn"
         id="unarchive"
         *ngIf="unarchive"
-        (click)="onUnarchiveClick()"
+        (click)="onUnarchiveClick(); openSnackBar('Note Unarchived', 'OK')"
         matTooltip="Unarchive"
       >
         <mat-icon>unarchive</mat-icon>
       </button>
 
       <mat-menu #menu="matMenu" id="threeDots-menu">
-        <button (click)="deleteHandler()" mat-menu-item>Delete Note</button>
+        <button
+          (click)="deleteHandler(); openSnackBar('Note deleted', 'OK')"
+          mat-menu-item
+        >
+          Delete Note
+        </button>
         <button mat-menu-item>Add Label</button>
         <button mat-menu-item>Add Drawing</button>
         <button mat-menu-item>Make a copy</button>
@@ -129,7 +134,9 @@
 
       <!-- del btns -->
       <button
-        (click)="deleteForeverClick()"
+        (click)="
+          deleteForeverClick(); openSnackBar('Note permanently deleted', 'OK')
+        "
         *ngIf="delForeverBtn"
         class="icon-btn"
         id="delForever"
@@ -138,7 +145,7 @@
         <mat-icon>delete_forever</mat-icon>
       </button>
       <button
-        (click)="restoreClick()"
+        (click)="restoreClick(); openSnackBar('Note restored', 'OK')"
         *ngIf="recoverBtn"
         class="icon-btn"
         id="recoverBtn"
