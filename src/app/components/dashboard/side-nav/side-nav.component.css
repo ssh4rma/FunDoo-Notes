@@ -88,7 +88,7 @@
 .label {
   font-size: 14px;
   white-space: nowrap;
-  color: #5f6368;
+  color: black;
   margin-left: 0;
   opacity: 0;
   transition: opacity 0.2s ease;

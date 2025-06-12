@@ -1,4 +1,3 @@
-<!-- LIST VIEW -->
 <div *ngIf="view === 'listview'" class="list-notes-card">
   <mat-card
     class="list-card"
@@ -11,13 +10,13 @@
           <h2>{{ note.title }}</h2>
         </div>
 
-        <!-- Pin Toggle Buttons -->
         <div class="pin-icon-div">
           <button
             class="icons"
             id="pin-btn"
-            (click)="note.isPined = true"
+            (click)="note.isPined = true; pinHandler(note)"
             [ngStyle]="{ display: note.isPined ? 'none' : 'inline-flex' }"
+            matTooltip="Pin note"
           >
             <mat-icon>keep_off</mat-icon>
           </button>
@@ -59,7 +58,6 @@
   </mat-card>
 </div>
 
-<!-- GRID VIEW -->
 <div *ngIf="view === 'gridview'" class="grid-notes-card">
   <mat-card
     class="grid-card"
@@ -72,13 +70,13 @@
           <h2>{{ note.title }}</h2>
         </div>
 
-        <!-- Pin Toggle Buttons -->
         <div class="pin-icon-div">
           <button
             class="icons"
             id="pin-btn"
-            (click)="note.isPined = true"
+            (click)="note.isPined = true; pinHandler(note)"
             [ngStyle]="{ display: note.isPined ? 'none' : 'inline-flex' }"
+            matTooltip="Pin note"
           >
             <mat-icon>keep_off</mat-icon>
           </button>

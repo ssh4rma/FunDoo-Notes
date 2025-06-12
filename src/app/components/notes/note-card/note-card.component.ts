@@ -8,6 +8,13 @@ import { DashboardDataService } from 'src/app/services/dashboard-data/dashboard-
 import { ChangeColorService } from 'src/app/services/color-change/change-color.service';
 import { MatIconModule } from '@angular/material/icon';
 import { PinedService } from 'src/app/services/pined/pined.service';
+import {
+  MatDialog,
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogModule,
+} from '@angular/material/dialog';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-note-card',
@@ -18,6 +25,8 @@ import { PinedService } from 'src/app/services/pined/pined.service';
     MatCardModule,
     IconsComponent,
     MatIconModule,
+    MatDialogModule,
+    MatTooltipModule,
   ],
   templateUrl: './note-card.component.html',
   styleUrls: ['./note-card.component.css'],
@@ -27,7 +36,8 @@ export class NoteCardComponent implements OnInit {
     private notesService: NotesService,
     private dashboardService: DashboardDataService,
     private colorService: ChangeColorService,
-    private pinService: PinedService
+    private pinService: PinedService,
+    private dialog: MatDialog
   ) {}
 
   notes$ = this.notesService.notes$;
@@ -36,6 +46,7 @@ export class NoteCardComponent implements OnInit {
   view = '';
   pinView = false;
   paletteInGrid = false;
+  isCardClicked = false;
 
   //archived
   note: any = []; //took a particular note which is being clicked
@@ -108,4 +119,14 @@ export class NoteCardComponent implements OnInit {
     console.log('delete handler is working');
     this.notesService.getNotes();
   }
+
+  // openEditDialog(): void {
+  // this.dialog.open(EditNoteComponent, {
+  //   width: '400px',
+  //   data: { /* pass note data here if needed */ }
+  // });
+
+  // cardClickHandler(): void {
+  //   this.isCardClicked = true;
+  // }
 }

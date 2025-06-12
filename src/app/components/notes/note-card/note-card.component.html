@@ -1,3 +1,5 @@
+<!-- dialog for editing card -->
+
 <section *ngIf="notes$ | async as notes; else loading">
   <div
     *ngIf="view === 'listview' && pinnedNotes.length > 0"
@@ -21,6 +23,7 @@
               class="icons"
               (click)="note.isPined = false; unpinHandler(note)"
               [ngStyle]="{ display: note.isPined ? 'inline-flex' : 'none' }"
+              matTooltip="Unpin note"
             >
               <mat-icon>keep_on</mat-icon>
             </button>
@@ -86,6 +89,7 @@
               class="icons"
               (click)="note.isPined = false; unpinHandler(note)"
               [ngStyle]="{ display: note.isPined ? 'inline-flex' : 'none' }"
+              matTooltip="Unpin note"
             >
               <mat-icon>keep_on</mat-icon>
             </button>
@@ -149,6 +153,7 @@
               class="icons"
               (click)="note.isPined = true; pinHandler(note)"
               [ngStyle]="{ display: note.isPined ? 'none' : 'inline-flex' }"
+              matTooltip="Pin note"
             >
               <mat-icon>keep_off</mat-icon>
             </button>
@@ -214,6 +219,7 @@
               class="icons"
               (click)="note.isPined = true; pinHandler(note)"
               [ngStyle]="{ display: note.isPined ? 'none' : 'inline-flex' }"
+              matTooltip="Pin note"
             >
               <mat-icon>keep_off</mat-icon>
             </button>

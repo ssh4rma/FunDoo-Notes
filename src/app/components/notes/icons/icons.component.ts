@@ -9,6 +9,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { NotesService } from 'src/app/services/notes/notes.service';
 import { TrashService } from 'src/app/services/trash/trash.service';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-icons',
@@ -21,6 +22,7 @@ import { TrashService } from 'src/app/services/trash/trash.service';
     MatCardModule,
     MatMenuModule,
     MatButtonModule,
+    MatTooltipModule,
   ],
   templateUrl: './icons.component.html',
   styleUrls: ['./icons.component.css'],

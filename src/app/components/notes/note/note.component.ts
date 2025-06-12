@@ -8,6 +8,7 @@ import { Note } from '../../../models/note.model';
 import { NotesService } from 'src/app/services/notes/notes.service';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-note',
@@ -20,6 +21,7 @@ import { MatSelectModule } from '@angular/material/select';
     FormsModule,
     MatInputModule,
     MatSelectModule,
+    MatTooltipModule,
   ],
   templateUrl: './note.component.html',
   styleUrls: ['./note.component.css'],

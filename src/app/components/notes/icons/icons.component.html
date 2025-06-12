@@ -18,6 +18,7 @@
           (click)="paletteHandleClick()"
           mat-icon-button
           [ngClass]="{ 'unarchive-margin': unarchive }"
+          matTooltip="Background options"
         >
           <mat-icon id="palette-icon">palette</mat-icon>
         </button>
@@ -49,6 +50,7 @@
         class="icon-btn"
         id="notification"
         mat-icon-button
+        matTooltip="Remind me"
       >
         <mat-icon class="icon">notification_important</mat-icon>
       </button>
@@ -58,11 +60,19 @@
         class="icon-btn"
         id="collaborator"
         mat-icon-button
+        matTooltip="Collaborator"
       >
         <mat-icon class="icon">person_add</mat-icon>
       </button>
 
-      <button *ngIf="image" class="icon-btn" id="image" mat-icon-button>
+      <button
+        *ngIf="image"
+        class="icon-btn"
+        id="image"
+        mat-icon-button
+        matTooltip="Add image"
+        [style.cursor]="'not-allowed'"
+      >
         <mat-icon class="icon">image</mat-icon>
       </button>
 
@@ -71,6 +81,7 @@
         *ngIf="archive"
         class="icon-btn"
         id="archive"
+        matTooltip="Archive"
         (click)="onArchiveClick()"
       >
         <mat-icon class="icon">archive</mat-icon>
@@ -82,6 +93,7 @@
         id="unarchive"
         *ngIf="unarchive"
         (click)="onUnarchiveClick()"
+        matTooltip="Unarchive"
       >
         <mat-icon>unarchive</mat-icon>
       </button>
@@ -102,6 +114,7 @@
         [matMenuTriggerFor]="menu"
         id="threeDots"
         class="icon-btn"
+        matTooltip="More"
       >
         <mat-icon class="icon">more_vert</mat-icon>
       </button>
@@ -120,6 +133,7 @@
         *ngIf="delForeverBtn"
         class="icon-btn"
         id="delForever"
+        matTooltip="Delete forever"
       >
         <mat-icon>delete_forever</mat-icon>
       </button>
@@ -128,6 +142,7 @@
         *ngIf="recoverBtn"
         class="icon-btn"
         id="recoverBtn"
+        matTooltip="Restore"
       >
         <mat-icon>restore_from_trash</mat-icon>
       </button>

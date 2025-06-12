@@ -155,3 +155,7 @@ p {
 #bottom-icons-tab {
   height: auto;
 }
+
+#drawing-button:hover {
+  cursor: not-allowed;
+}

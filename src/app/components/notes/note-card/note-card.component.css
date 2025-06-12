@@ -19,10 +19,15 @@ p {
   padding: 12px 16px 12px 16px;
 }
 
-.list-notes-card:hover .icons,
+/* .list-notes-card:hover .icons,
 .grid-notes-card:hover .icons {
   visibility: visible;
   transform: scale(1.05);
+} */
+
+.grid-card:hover .icons,
+.list-card:hover .icons {
+  visibility: visible;
 }
 
 .grid-notes-card {
@@ -97,4 +102,8 @@ p {
 .pin-icon-grid {
   display: flex;
   align-items: center;
+}
+
+.edit-card-dialog-box {
+  z-index: 9999999;
 }

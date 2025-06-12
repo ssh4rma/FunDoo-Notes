@@ -7,11 +7,19 @@ import { NotesService } from 'src/app/services/notes/notes.service';
 import { ChangeColorService } from 'src/app/services/color-change/change-color.service';
 import { DashboardDataService } from 'src/app/services/dashboard-data/dashboard-data.service';
 import { MatIconModule } from '@angular/material/icon';
+import { PinedService } from 'src/app/services/pined/pined.service';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-archive',
   standalone: true,
-  imports: [CommonModule, MatCardModule, IconsComponent, MatIconModule],
+  imports: [
+    CommonModule,
+    MatCardModule,
+    IconsComponent,
+    MatIconModule,
+    MatTooltipModule,
+  ],
   templateUrl: './archive.component.html',
   styleUrls: ['./archive.component.css'],
 })
@@ -20,7 +28,8 @@ export class ArchiveComponent {
     private archiveService: ArchiveService,
     private colorService: ChangeColorService,
     private notesService: NotesService,
-    private dashboardService: DashboardDataService
+    private dashboardService: DashboardDataService,
+    private pinService: PinedService
   ) {}
 
   notes: any;
@@ -34,7 +43,7 @@ export class ArchiveComponent {
     this.archiveService.getArchiveNote().subscribe({
       next: (res: any) => {
         this.notes = res.data.data.slice().reverse();
-        this.notes = this.notes.filter((n: any) => !n.isDeleted);
+        this.notes = this.notes.filter((n: any) => !n.isDeleted && !n.isPined);
       },
       error: (err) => {
         console.log(err);
@@ -54,6 +63,9 @@ export class ArchiveComponent {
         this.archiveService.getArchiveNote().subscribe({
           next: (res: any) => {
             this.notes = res.data.data.slice().reverse();
+            this.notes = this.notes.filter(
+              (n: any) => !n.isDeleted && !n.isPined
+            );
           },
           error: (err) => console.log(err),
         });
@@ -66,7 +78,7 @@ export class ArchiveComponent {
     this.archiveService.getArchiveNote().subscribe({
       next: (res: any) => {
         this.notes = res.data.data.slice().reverse();
-        this.notes = this.notes.filter((n: any) => !n.isDeleted);
+        this.notes = this.notes.filter((n: any) => !n.isDeleted && !n.isPined);
       },
       error: (err) => console.log(err),
     });
@@ -78,9 +90,24 @@ export class ArchiveComponent {
     this.archiveService.getArchiveNote().subscribe({
       next: (res: any) => {
         this.notes = res.data.data.slice().reverse();
-        this.notes = this.notes.filter((n: any) => !n.isDeleted);
+        this.notes = this.notes.filter((n: any) => !n.isDeleted && !n.isPined);
       },
       error: (err) => console.log(err),
     });
+  }
+
+  //pin = true through postPin api and remove from archive
+  pinHandler(note: any): void {
+    // console.log('this will triggered when card on pinning the card');
+    let data = {
+      isPined: true,
+      noteIdList: [note.id],
+    };
+
+    this.pinService.postPinedNote(data).subscribe({
+      next: () => this.notesService.getNotes(),
+      error: (err) => console.log(err),
+    });
+    this.refreshNotes();
   }
 }
