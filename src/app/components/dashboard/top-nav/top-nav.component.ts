@@ -28,4 +28,11 @@ export class TopNavComponent {
   @Input() listView!: boolean;
   @Output() toggleSidenav = new EventEmitter<void>();
   @Output() toggleView = new EventEmitter<string>();
+  @Output() searchTextString = new EventEmitter<string>();
+
+  searchText = '';
+
+  textStringHandler(): void {
+    this.searchTextString.emit(this.searchText);
+  }
 }

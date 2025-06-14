@@ -38,6 +38,7 @@ export class ArchiveComponent {
 
   notes: any;
   view = '';
+  searchText = '';
 
   ngOnInit() {
     this.dashboardService.view$.subscribe((val) => {
@@ -51,6 +52,25 @@ export class ArchiveComponent {
     });
 
     this.archiveService.getArchiveNote();
+
+    this.dashboardService.text$.subscribe((txt) => {
+      this.searchText = txt.toLowerCase();
+      if (this.searchText.length === 0) {
+        this.archiveService.archiveNotes$.subscribe((notes) => {
+          this.notes = notes;
+          this.notes = notes.filter((n) => !n.isDeleted && !n.isPined);
+        });
+      }
+      this.noteFilter();
+    });
+  }
+
+  noteFilter(): void {
+    this.archiveService.archiveNotes$.subscribe((notes) => {
+      this.notes = notes.filter((n) =>
+        n.title.toLowerCase().includes(this.searchText)
+      );
+    });
   }
 
   bgHandler(color: string, note: any) {

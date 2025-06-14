@@ -21,6 +21,7 @@ export class TrashComponent {
 
   notes: any[] = [];
   view = '';
+  searchText = '';
 
   ngOnInit(): void {
     this.dashboardService.view$.subscribe((val) => {
@@ -32,6 +33,24 @@ export class TrashComponent {
     });
 
     this.trashService.getTrashNote();
+
+    this.dashboardService.text$.subscribe((txt) => {
+      this.searchText = txt.toLowerCase();
+      if (this.searchText.length === 0) {
+        this.trashService.trashNotes$.subscribe((notes: any[]) => {
+          this.notes = notes.filter((note) => note.isDeleted);
+        });
+      }
+      this.notesFilter();
+    });
+  }
+
+  notesFilter(): void {
+    this.trashService.trashNotes$.subscribe(() => {
+      this.notes = this.notes.filter((n) =>
+        n.title.toLowerCase().includes(this.searchText)
+      );
+    });
   }
 
   handleRecover(): void {

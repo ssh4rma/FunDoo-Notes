@@ -50,6 +50,8 @@ export class NoteCardComponent {
   pinnedNotes: any[] = [];
   unpinnedNotes: any[] = [];
 
+  searchText = '';
+
   ngOnInit(): void {
     this.notesService.getNotes();
     this.dashboardService.view$.subscribe((val) => {
@@ -62,6 +64,37 @@ export class NoteCardComponent {
         .filter((n) => n.isPined && !n.isArchived && !n.isDeleted)
         .reverse();
       this.unpinnedNotes = notes
+        .filter((n) => !n.isPined && !n.isArchived && !n.isDeleted)
+        .reverse();
+    });
+
+    this.dashboardService.text$.subscribe((txt) => {
+      this.searchText = txt.toLowerCase();
+      if (this.searchText.length === 0) {
+        this.notes$.subscribe((notes) => {
+          this.pinnedNotes = notes
+            .filter((n) => n.isPined && !n.isArchived && !n.isDeleted)
+            .reverse();
+          this.unpinnedNotes = notes
+            .filter((n) => !n.isPined && !n.isArchived && !n.isDeleted)
+            .reverse();
+        });
+      }
+      this.noteFilter();
+    });
+  }
+
+  noteFilter(): void {
+    this.notes$.subscribe((notes) => {
+      const filtered = notes.filter((n) =>
+        n.title.toLowerCase().includes(this.searchText)
+      );
+
+      this.pinnedNotes = filtered
+        .filter((n) => n.isPined && !n.isArchived && !n.isDeleted)
+        .reverse();
+
+      this.unpinnedNotes = filtered
         .filter((n) => !n.isPined && !n.isArchived && !n.isDeleted)
         .reverse();
     });

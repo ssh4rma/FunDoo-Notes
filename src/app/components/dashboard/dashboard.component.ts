@@ -50,4 +50,9 @@ export class DashboardComponent {
   onClickTrash(): void {
     this.router.navigate(['/dashboard/trash']);
   }
+
+  searchHandler(txt: string) {
+    // console.log(txt);
+    this.dashboardData.setText(txt);
+  }
 }
