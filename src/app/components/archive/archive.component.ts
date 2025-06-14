@@ -47,6 +47,7 @@ export class ArchiveComponent {
 
     this.archiveService.archiveNotes$.subscribe((notes) => {
       this.notes = notes;
+      this.notes = notes.filter((n) => !n.isDeleted && !n.isPined);
     });
 
     this.archiveService.getArchiveNote();

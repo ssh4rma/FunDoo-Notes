@@ -1,4 +1,8 @@
 <div *ngIf="view === 'listview'" class="list-notes-card">
+  <div class="del-forever-text">
+    <h3><i>Notes in Trash are deleted after 7 days.</i></h3>
+    <button (click)="emptyTrashHandler()">Empty Trash</button>
+  </div>
   <mat-card
     class="list-card"
     *ngFor="let note of notes"
@@ -28,26 +32,32 @@
   </mat-card>
 </div>
 
-<div *ngIf="view === 'gridview'" class="grid-notes-card">
-  <mat-card
-    class="grid-card"
-    *ngFor="let note of notes"
-    [ngStyle]="{ 'background-color': note.color || '#fff' }"
-  >
-    <div class="content">
-      <div class="top-bar-grid">
-        <div class="title-grid">
-          <h2>{{ note.title }}</h2>
+<div *ngIf="view === 'gridview'" class="trash-grid-view">
+  <div *ngIf="view === 'gridview'" class="del-forever-text-grid">
+    <h3><i>Notes in Trash are deleted after 7 days.</i></h3>
+    <button (click)="emptyTrashHandler()">Empty Trash</button>
+  </div>
+  <div *ngIf="view === 'gridview'" class="grid-notes-card">
+    <mat-card
+      class="grid-card"
+      *ngFor="let note of notes"
+      [ngStyle]="{ 'background-color': note.color || '#fff' }"
+    >
+      <div class="content">
+        <div class="top-bar-grid">
+          <div class="title-grid">
+            <h2>{{ note.title }}</h2>
+          </div>
+        </div>
+
+        <div class="description-grid">
+          <p class="para">{{ note.description }}</p>
+        </div>
+
+        <div class="icons">
+          <app-icons [delForeverBtn]="true" [recoverBtn]="true" [note]="note" />
         </div>
       </div>
-
-      <div class="description-grid">
-        <p class="para">{{ note.description }}</p>
-      </div>
-
-      <div class="icons">
-        <app-icons [delForeverBtn]="true" [recoverBtn]="true" [note]="note" />
-      </div>
-    </div>
-  </mat-card>
+    </mat-card>
+  </div>
 </div>

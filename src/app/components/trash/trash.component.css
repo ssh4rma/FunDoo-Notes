@@ -36,7 +36,11 @@ p {
   flex-direction: row;
   flex-wrap: wrap;
   gap: 20px;
-  margin-left: 200px;
+  margin-top: 30px;
+}
+
+.trash-grid-view {
+  margin-left: 250px;
   margin-top: 90px;
 }
 
@@ -105,4 +109,36 @@ p {
 .pin-icon-grid {
   display: flex;
   align-items: center;
+}
+
+.del-forever-text {
+  margin-left: 100px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.del-forever-text > button {
+  background-color: transparent;
+  color: #1a73e8;
+  outline: none;
+  border: none;
+  margin-bottom: 13px;
+}
+
+.del-forever-text-grid {
+  margin-left: 400px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.del-forever-text-grid > button {
+  background-color: transparent;
+  color: #1a73e8;
+  outline: none;
+  border: none;
+  margin-bottom: 13px;
 }

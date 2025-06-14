@@ -15,52 +15,46 @@ import { DashboardDataService } from 'src/app/services/dashboard-data/dashboard-
 })
 export class TrashComponent {
   constructor(
-    private trashService: TrashService,
-    private dashboardService: DashboardDataService
+    private readonly trashService: TrashService,
+    private readonly dashboardService: DashboardDataService
   ) {}
 
-  notes: any;
+  notes: any[] = [];
   view = '';
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.dashboardService.view$.subscribe((val) => {
       this.view = val;
-      // console.log(this.view);
     });
-    this.trashService.getTrashNote().subscribe({
-      next: (res: any) => {
-        this.notes = res.data.data.slice().reverse();
-      },
-      error: (err) => {
-        console.log(err);
-      },
+
+    this.trashService.trashNotes$.subscribe((notes: any[]) => {
+      this.notes = notes.filter((note) => note.isDeleted);
     });
+
+    this.trashService.getTrashNote();
   }
 
-  //getTrashNotes and filter notes with !n.isDel
   handleRecover(): void {
-    // console.log('recover handler is working');
-    this.trashService.getTrashNote().subscribe({
-      next: (res: any) => {
-        this.notes = res.data.data.slice().reverse();
-        this.notes = this.notes.filter((n: any) => n.isDeleted);
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+    this.trashService.getTrashNote();
   }
 
   handleDelForever(): void {
-    // console.log('del forever handler is working');
-    this.trashService.getTrashNote().subscribe({
-      next: (res: any) => {
-        this.notes = res.data.data.slice().reverse();
-        this.notes = this.notes.filter((n: any) => n.isDeleted);
+    this.trashService.getTrashNote();
+  }
+
+  emptyTrashHandler(): void {
+    this.trashService.trashNotes$.subscribe({
+      next: (notes) => {
+        const deletedNotes = notes.filter((note) => note.isDeleted);
+        for (const note of deletedNotes) {
+          const data = { noteIdList: [note.id] };
+          this.trashService.postDeleteForever(data).subscribe({
+            next: () => this.trashService.getTrashNote(),
+            error: (err) => console.log(err),
+          });
+        }
       },
-      error: (err) => {
-        console.log(err);
-      },
+      error: (err) => console.log(err),
     });
   }
 }
