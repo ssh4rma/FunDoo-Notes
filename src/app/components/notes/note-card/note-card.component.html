@@ -5,7 +5,7 @@
     *ngIf="view === 'listview' && pinnedNotes.length > 0"
     class="list-notes-card"
   >
-    <h3 *ngIf="pinnedNotes.length > 0" style="color: #5f6368">PINNED NOTES</h3>
+    <h5 *ngIf="pinnedNotes.length > 0" style="color: #5f6368">PINNED</h5>
 
     <mat-card
       class="list-card"
@@ -58,18 +58,19 @@
             [menuBtn]="true"
             (deleteEvent)="deleteHandler()"
             (isArchivedClickHandler)="archiveHandler()"
+            (reminderTime)="setReminder($event, note)"
           />
         </div>
       </div>
     </mat-card>
   </div>
 
-  <h3
+  <h5
     *ngIf="pinnedNotes.length > 0 && view === 'gridview'"
     style="color: #5f6368; margin-left: 200px"
   >
-    PINNED NOTES
-  </h3>
+    PINNED
+  </h5>
   <div
     *ngIf="view === 'gridview' && pinnedNotes.length > 0"
     class="grid-notes-card"
@@ -126,6 +127,7 @@
             [menuBtn]="true"
             (deleteEvent)="deleteHandler()"
             (isArchivedClickHandler)="archiveHandler()"
+            (reminderTime)="setReminder($event, note)"
           />
         </div>
       </div>
@@ -136,9 +138,7 @@
     *ngIf="view === 'listview' && unpinnedNotes.length > 0"
     class="list-notes-card"
   >
-    <h3 *ngIf="pinnedNotes.length > 0" style="color: #5f6368">
-      UNPINNED NOTES
-    </h3>
+    <h5 *ngIf="pinnedNotes.length > 0" style="color: #5f6368">OTHERS</h5>
     <mat-card
       class="list-card"
       *ngFor="let note of unpinnedNotes"
@@ -190,18 +190,19 @@
             [menuBtn]="true"
             (deleteEvent)="deleteHandler()"
             (isArchivedClickHandler)="archiveHandler()"
+            (reminderTime)="setReminder($event, note)"
           />
         </div>
       </div>
     </mat-card>
   </div>
 
-  <h3
+  <h5
     *ngIf="pinnedNotes.length > 0 && view === 'gridview'"
     style="color: #5f6368; margin-left: 200px; margin-top: 20px"
   >
-    UNPINNED NOTES
-  </h3>
+    OTHERS
+  </h5>
   <div
     *ngIf="view === 'gridview' && unpinnedNotes.length > 0"
     class="grid-notes-card"
@@ -258,6 +259,7 @@
             [menuBtn]="true"
             (deleteEvent)="deleteHandler()"
             (isArchivedClickHandler)="archiveHandler()"
+            (reminderTime)="setReminder($event, note)"
           />
         </div>
       </div>

@@ -155,3 +155,20 @@
 #unarchive {
   font-size: 20px;
 }
+
+.reminder-prop {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.reminder-para-label {
+  align-items: flex-start;
+}
+
+.reminder-para-time {
+  align-items: flex-end;
+}
+.reminder-label {
+  margin-left: 16px;
+}

@@ -11,6 +11,7 @@ import { NotesService } from 'src/app/services/notes/notes.service';
 import { TrashService } from 'src/app/services/trash/trash.service';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { EVENT_MANAGER_PLUGINS } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-icons',
@@ -45,6 +46,7 @@ export class IconsComponent {
   @Output() delForeverEvent = new EventEmitter();
   @Output() recoverEvent = new EventEmitter();
   @Output() editCloseBtn = new EventEmitter();
+  @Output() reminderTime = new EventEmitter();
 
   @Input() formatBtn = false;
   @Input() colorPalette = false;
@@ -89,6 +91,10 @@ export class IconsComponent {
 
   setBg(color: string): void {
     this.bgColor.emit(color);
+  }
+
+  setReminder(time: string): void {
+    this.reminderTime.emit(time);
   }
 
   closeBox(): void {

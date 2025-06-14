@@ -11,6 +11,8 @@ import { PinedService } from 'src/app/services/pined/pined.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { EditNoteComponent } from '../../edit-note/edit-note.component';
+import { ReminderComponent } from '../../reminder/reminder.component';
+import { ReminderService } from 'src/app/services/reminder/reminder.service';
 
 @Component({
   selector: 'app-note-card',
@@ -29,11 +31,12 @@ import { EditNoteComponent } from '../../edit-note/edit-note.component';
 })
 export class NoteCardComponent {
   constructor(
-    private notesService: NotesService,
-    private dashboardService: DashboardDataService,
-    private colorService: ChangeColorService,
-    private pinService: PinedService,
-    private dialog: MatDialog
+    private readonly notesService: NotesService,
+    private readonly dashboardService: DashboardDataService,
+    private readonly colorService: ChangeColorService,
+    private readonly pinService: PinedService,
+    private readonly dialog: MatDialog,
+    private readonly reminderService: ReminderService
   ) {}
 
   notes$ = this.notesService.notes$;
@@ -81,6 +84,35 @@ export class NoteCardComponent {
         });
       }
       this.noteFilter();
+    });
+  }
+
+  private getTimeAndDate(day: 'am' | 'pm'): string {
+    const now = new Date();
+    const reminderDate = new Date();
+
+    if (day === 'am') {
+      reminderDate.setDate(now.getDate() + 1);
+      reminderDate.setHours(8, 0, 0, 0);
+    } else if (day === 'pm') {
+      reminderDate.setHours(20, 0, 0, 0);
+    }
+
+    return reminderDate.toISOString();
+  }
+
+  setReminder(day: 'am' | 'pm', note: any): void {
+    const date = this.getTimeAndDate(day);
+    const data = {
+      reminder: [date],
+      noteIdList: [note.id],
+    };
+
+    this.reminderService.postReminderNotes(data).subscribe({
+      next: () => {
+        console.log('Reminder set for:', date);
+      },
+      error: (err) => console.log(err),
     });
   }
 

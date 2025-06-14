@@ -50,10 +50,28 @@
         class="icon-btn"
         id="notification"
         mat-icon-button
+        [matMenuTriggerFor]="reminderMenu"
         matTooltip="Remind me"
       >
         <mat-icon class="icon">notification_important</mat-icon>
       </button>
+
+      <mat-menu id="reminder-menu" #reminderMenu="matMenu">
+        <h3 class="reminder-label">Remind me later</h3>
+        <h5 class="reminder-label">Saved in Google Reminders</h5>
+        <button mat-menu-item (click)="setReminder('pm')">
+          <div class="reminder-prop">
+            <p class="reminder-para-label">Later today</p>
+            <p class="reminder-para-time">8:00 PM</p>
+          </div>
+        </button>
+        <button mat-menu-item (click)="setReminder('am')">
+          <div class="reminder-prop">
+            <p class="reminder-para-label">Tomorrow</p>
+            <p class="reminder-para-time">8:00 AM</p>
+          </div>
+        </button>
+      </mat-menu>
 
       <button
         *ngIf="collaborator"

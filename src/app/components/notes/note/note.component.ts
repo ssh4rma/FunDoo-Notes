@@ -27,7 +27,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   styleUrls: ['./note.component.css'],
 })
 export class NoteComponent {
-  constructor(private eRef: ElementRef, private notesService: NotesService) {}
+  constructor(
+    private readonly eRef: ElementRef,
+    private readonly notesService: NotesService
+  ) {}
   expandNote = false;
 
   pinView = false;
@@ -47,8 +50,8 @@ export class NoteComponent {
         const newNote: Note = {
           title: this.title,
           description: this.description,
-          isArchived: this.isArchive ? true : false,
-          isPined: this.pinView ? true : false,
+          isArchived: !!this.isArchive,
+          isPined: !!this.pinView,
           color: this.bgColor,
           isDeleted: false,
         };
