@@ -1,0 +1,22 @@
+<div class="sidenav-wrapper" (mouseenter)="onEnter()" (mouseleave)="onLeave()">
+  <div class="icon-group" [class.expanded]="isHovered || isSideNavOpen">
+    <div
+      *ngFor="let item of items"
+      class="icon-row"
+      [ngClass]="{
+        selected: selectedIndex === item.index,
+        hovered: hoveredIndex === item.index && selectedIndex !== item.index
+      }"
+      (mouseenter)="setHoveredIndex.emit(item.index)"
+      (mouseleave)="setHoveredIndex.emit(null)"
+      (click)="handleSelect(item.index, item.handler)"
+    >
+      <div class="icon-container">
+        <mat-icon>{{ item.icon }}</mat-icon>
+      </div>
+      <span class="label" *ngIf="isHovered || isSideNavOpen">{{
+        item.label
+      }}</span>
+    </div>
+  </div>
+</div>

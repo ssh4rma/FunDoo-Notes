@@ -1,40 +1,4 @@
-<mat-card
-  id="collapsedNoteCard"
-  (click)="expand()"
-  [ngClass]="{ defaultCard: expandNote }"
->
-  <mat-card-content>
-    <div class="card">
-      <div class="left-side">
-        <p>Take a note...</p>
-      </div>
-      <div class="right-side">
-        <div class="right-side-icons">
-          <button mat-icon-button matTooltip="New list">
-            <mat-icon>check_box</mat-icon>
-          </button>
-          <button id="drawing-button" matTooltip="Drawing is not available">
-            <mat-icon>brush</mat-icon>
-          </button>
-          <button
-            id="drawing-button"
-            matTooltip="New note with image"
-            mat-icon-button
-          >
-            <mat-icon>image</mat-icon>
-          </button>
-        </div>
-      </div>
-    </div>
-  </mat-card-content>
-</mat-card>
-
-<mat-card
-  id="AddNoteCard"
-  *ngIf="expandNote"
-  [ngClass]="{ expandedCard: expandNote }"
-  [ngStyle]="{ 'background-color': bgColor }"
->
+<mat-card id="AddNoteCard" [ngStyle]="{ 'background-color': bgColor }">
   <mat-card-content id="AddCardContent">
     <div class="top-content">
       <div class="top-input-div">
@@ -43,12 +7,15 @@
           id="titleBar"
           placeholder="Title"
           value="title"
-          [(ngModel)]="title"
+          [(ngModel)]="data.title"
           [ngStyle]="{ 'background-color': bgColor }"
         />
       </div>
       <div class="pin-icon-div">
-        <button class="pin-icon" (click)="togglePin()">
+        <button
+          class="pin-icon"
+          (click)="togglePin(); pinView ? unPinHandler() : pinHandler()"
+        >
           <mat-icon>{{ pinView ? "keep_on" : "keep_off" }}</mat-icon>
         </button>
       </div>
@@ -63,33 +30,38 @@
       cdkAutosizeMaxRows="5"
       id="takeNoteBar"
       value="description"
-      [(ngModel)]="description"
+      [(ngModel)]="data.description"
       [ngStyle]="{
         'background-color': bgColor,
         overflow: 'hidden',
         'font-family': 'Roboto, sans-serif',
         'font-size': '14px',
-        'margin-bottom': '20px',
-        height: 'auto'
+        'margin-bottom': '20px'
       }"
     ></textarea>
 
+    <h5 id="time">Edited {{ " " + timeWithAmPm }}</h5>
     <div id="bottom-icons-tab">
       <app-icons
-        (bgColor)="setBgColor($event)"
+        (bgColor)="setBgColor($event, data)"
         (closeBtn)="dataFromCloseBtn($event)"
         [formatBtn]="true"
         [colorPalette]="true"
         [notification]="true"
         [collaborator]="true"
         [image]="true"
-        [archive]="true"
+        [unarchive]="true"
         [threeDots]="true"
         [undo]="true"
         [redo]="true"
         [disableBtn]="true"
         [closeButton]="true"
         [menuBtn]="true"
+        [paletteInGrid]="true"
+        (unarchiveEvent)="unarchiveHandler()"
+        (deleteEvent)="isDel()"
+        [note]="data"
+        (editCloseBtn)="onCloseBtn()"
       />
     </div>
   </mat-card-content>

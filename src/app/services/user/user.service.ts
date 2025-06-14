@@ -20,7 +20,8 @@ export class UserService {
   }
 
   signup(data: any) {
-    let endPoint: string = '/user/userSignUp';
+    let endPoint: string =
+      'https://fundoonotes.incubation.bridgelabz.com/api/user/userSignup';
     let header = new HttpHeaders({
       'Content-Type': 'application/json',
       Accept: 'application/json',

@@ -6,59 +6,25 @@
   flex-wrap: wrap;
 }
 
+* {
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
 mat-card {
-  width: 100%;
-  max-width: 600px;
-  margin: auto;
-  margin-top: 90px;
-  height: 60px;
-  border: inset transparent 2px;
-  border-radius: 10px;
-  margin-bottom: 50px;
-}
-
-/* mat-card-content {
-  padding: 12px 16px 12px 16px;
-} */
-
-/* .left-side {
-  flex: 1;
-}
-
-.right-side {
-  flex: 0.2;
-} */
-
-.right-side-icons {
-  display: flex;
-  gap: 30px;
-  color: gray;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  margin-bottom: 10px;
-}
-
-.right-side-icons > button {
-  background-color: transparent;
-  outline: none;
-  border: none;
-}
-
-.right-side-icons > button:hover {
-  background-color: rgba(95, 99, 104, 0.157);
-  border-radius: 50%;
-  height: auto;
   width: auto;
+  margin: auto;
+  height: auto;
 }
 
-p {
-  color: gray;
-  font-size: large;
+mat-card-content {
+  width: auto;
+  height: auto;
 }
 
-.defaultCard {
-  visibility: hidden;
-  position: absolute;
+#time {
+  margin-top: 20px;
+  margin-left: 65%;
 }
 
 #AddNoteCard {
@@ -84,7 +50,7 @@ p {
 }
 
 #takeNoteBar {
-  /* height: 30px; */
+  height: 100px;
   width: 300px;
   font-size: large;
   margin-top: 10px;
@@ -111,7 +77,7 @@ p {
   width: 100%;
   font-size: large;
 }
-/* 
+
 @media (max-width: 635px) {
   #titleBar,
   #takeNoteBar {
@@ -138,7 +104,7 @@ p {
   #takeNoteBar {
     width: 100px;
   }
-} */
+}
 
 #AddNoteCard,
 #collapsedNoteCard {
@@ -150,12 +116,4 @@ p {
     visibility: hidden;
     position: absolute;
   }
-}
-
-#bottom-icons-tab {
-  height: auto;
-}
-
-#drawing-button:hover {
-  cursor: not-allowed;
 }

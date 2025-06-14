@@ -1,0 +1,97 @@
+<mat-toolbar>
+  <div class="nav-bar">
+    <div class="left-section">
+      <button
+        mat-icon-button
+        aria-label="Menu"
+        (click)="toggleSidenav.emit()"
+        id="menu-btn"
+        style="margin-right: 40px"
+        matTooltip="Main menu"
+      >
+        <mat-icon style="color: #5f6368">menu</mat-icon>
+      </button>
+      <img
+        *ngIf="isNotesClicked"
+        id="google-keep-logo"
+        src="../../../assets/google_keep_logo.png"
+        alt="logo"
+      />
+      <span *ngIf="isNotesClicked" matTooltip="Keep" style="color: #5f6368"
+        >Keep</span
+      >
+      <span
+        *ngIf="isArchivedClicked"
+        matTooltip="Archive"
+        style="color: #5f6368"
+        id="woIcon"
+        >Archive</span
+      >
+      <span
+        *ngIf="isTrashClicked"
+        matTooltip="Trash"
+        style="color: #5f6368"
+        id="woIcon"
+        >Trash</span
+      >
+      <span
+        *ngIf="isReminderClicked"
+        matTooltip="Trash"
+        style="color: #5f6368"
+        id="woIcon"
+        >Reminders</span
+      >
+    </div>
+
+    <div class="search-bar">
+      <mat-icon class="serach-icon" matPrefix>search</mat-icon>
+      <input
+        matInput
+        placeholder="Search"
+        [(ngModel)]="searchText"
+        (ngModelChange)="textStringHandler()"
+      />
+    </div>
+
+    <div class="right-side-icons">
+      <button id="refresh" class="icon" mat-icon-button matTooltip="Refresh">
+        <mat-icon>refresh</mat-icon>
+      </button>
+
+      <button
+        id="list-btn"
+        class="icon"
+        mat-icon-button
+        (click)="toggleView.emit('gridview')"
+        [ngStyle]="{ display: listView ? 'none' : 'inline-flex' }"
+        matTooltip="List View"
+      >
+        <mat-icon>view_stream</mat-icon>
+      </button>
+
+      <button
+        id="grid-btn"
+        class="icon"
+        mat-icon-button
+        (click)="toggleView.emit('listview')"
+        [ngStyle]="{ display: listView ? 'inline-flex' : 'none' }"
+        matTooltip="Grid View"
+      >
+        <mat-icon>grid_view</mat-icon>
+      </button>
+
+      <button id="setting" class="icon" mat-icon-button matTooltip="Settings">
+        <mat-icon>settings</mat-icon>
+      </button>
+    </div>
+
+    <div class="right-most-icons">
+      <button id="apps" class="icon" mat-icon-button matTooltip="Google apps">
+        <mat-icon>apps</mat-icon>
+      </button>
+      <button class="icon" mat-icon-button matTooltip="Google Account">
+        <mat-icon>person</mat-icon>
+      </button>
+    </div>
+  </div>
+</mat-toolbar>

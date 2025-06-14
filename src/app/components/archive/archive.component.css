@@ -2,6 +2,7 @@
   margin: auto;
   width: 100%;
   max-width: 600px;
+  margin-top: 90px;
 }
 
 mat-card-title,
@@ -22,13 +23,7 @@ p {
 /* .list-notes-card:hover .icons,
 .grid-notes-card:hover .icons {
   visibility: visible;
-  transform: scale(1.05);
 } */
-
-.grid-card:hover .icons,
-.list-card:hover .icons {
-  visibility: visible;
-}
 
 .grid-notes-card {
   display: flex;
@@ -36,6 +31,7 @@ p {
   flex-wrap: wrap;
   gap: 20px;
   margin-left: 250px;
+  margin-top: 90px;
 }
 
 .grid-card {
@@ -44,6 +40,12 @@ p {
   overflow: hidden;
   position: relative;
   /* padding-top: 5px; */
+}
+
+/* change for icon on per card */
+.grid-card:hover .icons,
+.list-card:hover .icons {
+  visibility: visible;
 }
 
 .content {
@@ -102,8 +104,4 @@ p {
 .pin-icon-grid {
   display: flex;
   align-items: center;
-}
-
-.edit-card-dialog-box {
-  z-index: 9999999;
 }

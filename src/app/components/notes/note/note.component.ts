@@ -6,6 +6,9 @@ import { IconsComponent } from '../icons/icons.component';
 import { FormsModule } from '@angular/forms';
 import { Note } from '../../../models/note.model';
 import { NotesService } from 'src/app/services/notes/notes.service';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-note',
@@ -16,15 +19,22 @@ import { NotesService } from 'src/app/services/notes/notes.service';
     MatIconModule,
     IconsComponent,
     FormsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatTooltipModule,
   ],
   templateUrl: './note.component.html',
   styleUrls: ['./note.component.css'],
 })
 export class NoteComponent {
-  constructor(private eRef: ElementRef, private notesService: NotesService) {}
+  constructor(
+    private readonly eRef: ElementRef,
+    private readonly notesService: NotesService
+  ) {}
   expandNote = false;
 
   pinView = false;
+  isArchive = false;
   // now take data from the user
   title = '';
   description = '';
@@ -40,9 +50,10 @@ export class NoteComponent {
         const newNote: Note = {
           title: this.title,
           description: this.description,
-          isArchived: false,
-          isPined: false,
+          isArchived: !!this.isArchive,
+          isPined: !!this.pinView,
           color: this.bgColor,
+          isDeleted: false,
         };
 
         this.notesService.postNote(newNote).subscribe({

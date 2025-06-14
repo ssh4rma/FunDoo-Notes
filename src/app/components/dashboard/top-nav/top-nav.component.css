@@ -1,0 +1,154 @@
+:host {
+  position: fixed;
+  /* height: calc(100vh - 64px); */
+  top: 0px;
+  width: 100%;
+  z-index: 1000;
+}
+
+mat-toolbar {
+  background-color: white;
+  border: solid 1px rgb(229, 221, 221);
+}
+
+#woIcon {
+  margin-left: 50px;
+  position: absolute;
+}
+
+#google-keep-logo {
+  width: 30px;
+  height: 40px;
+  margin-right: 19px;
+  margin-bottom: 3px;
+  margin-left: -30px;
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.left-section,
+.search,
+.right-side-icons {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+}
+
+.left-section {
+  flex: 0.5;
+  gap: 10px;
+  padding-left: 0;
+}
+
+.left-section > span {
+  font-size: 23px;
+}
+
+#menu-btn {
+  margin-left: 0px;
+}
+
+.search-bar {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  max-width: 720px;
+  width: 100%;
+  margin-right: 100px;
+}
+
+#search-bar:focus {
+  background-color: white;
+}
+
+.search input {
+  width: 100%;
+  padding: 12px 12px 12px 42px;
+  border: none;
+  outline: none;
+  border-radius: 9px;
+  background-color: #f1f3f4;
+  font-size: 14px;
+  height: 50px;
+  box-sizing: border-box;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 12px;
+  color: #5f6368;
+  background-color: transparent;
+  margin-right: 100px;
+}
+
+.right-side-icons {
+  flex: 0.5;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-right: 10px;
+}
+
+.icon {
+  color: #5f6368;
+}
+
+@media (max-width: 650px) {
+  .search {
+    margin-left: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  #menu-btn,
+  #refresh,
+  #grid-toggle {
+    visibility: hidden;
+    position: absolute;
+  }
+}
+
+@media (max-width: 410px) {
+  span,
+  .search {
+    visibility: hidden;
+    position: absolute;
+  }
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: #f1f3f4;
+  border-radius: 8px;
+  padding: 0 12px;
+  height: 48px;
+  max-width: 760px;
+  width: 100%;
+}
+
+.search-icon {
+  margin-right: 10px;
+  background-color: #5f6368;
+  font-size: 20px;
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 16px;
+  flex: 1;
+  margin-left: 10px;
+}
+
+.search-bar:focus-within {
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(60, 64, 67, 0.15), 0 4px 8px rgba(60, 64, 67, 0.15);
+}

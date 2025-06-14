@@ -1,0 +1,119 @@
+<div *ngIf="view === 'listview'" class="list-notes-card">
+  <mat-card
+    class="list-card"
+    *ngFor="let note of notes"
+    [ngStyle]="{ 'background-color': note.color || '#fff' }"
+  >
+    <div class="content">
+      <div class="top-bar">
+        <div class="title-list">
+          <h2>{{ note.title }}</h2>
+        </div>
+
+        <div class="pin-icon-div">
+          <button
+            class="icons"
+            id="pin-btn"
+            (click)="note.isPined = true; pinHandler(note)"
+            [ngStyle]="{ display: note.isPined ? 'none' : 'inline-flex' }"
+            matTooltip="Pin note"
+          >
+            <mat-icon>keep_off</mat-icon>
+          </button>
+          <button
+            class="icons"
+            id="pin-btn"
+            (click)="note.isPined = false"
+            [ngStyle]="{ display: note.isPined ? 'inline-flex' : 'none' }"
+          >
+            <mat-icon>keep_on</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <div class="description-list" (click)="openEditDialog(note)">
+        <p class="para">{{ note.description }}</p>
+      </div>
+
+      <div class="icons">
+        <app-icons
+          [formatBtn]="false"
+          [colorPalette]="true"
+          [notification]="true"
+          [collaborator]="true"
+          [image]="true"
+          [archive]="false"
+          [unarchive]="true"
+          [threeDots]="true"
+          [undo]="false"
+          [redo]="false"
+          [note]="note"
+          (bgColor)="bgHandler($event, note)"
+          [menuBtn]="true"
+          (unarchiveEvent)="refreshNotes()"
+          (deleteEvent)="refreshNotesAfterDelete()"
+        />
+      </div>
+    </div>
+  </mat-card>
+</div>
+
+<div *ngIf="view === 'gridview'" class="grid-notes-card">
+  <mat-card
+    class="grid-card"
+    *ngFor="let note of notes"
+    [ngStyle]="{ 'background-color': note.color || '#fff' }"
+  >
+    <div class="content">
+      <div class="top-bar-grid">
+        <div class="title-grid">
+          <h2>{{ note.title }}</h2>
+        </div>
+
+        <div class="pin-icon-div">
+          <button
+            class="icons"
+            id="pin-btn"
+            (click)="note.isPined = true; pinHandler(note)"
+            [ngStyle]="{ display: note.isPined ? 'none' : 'inline-flex' }"
+            matTooltip="Pin note"
+          >
+            <mat-icon>keep_off</mat-icon>
+          </button>
+          <button
+            class="icons"
+            id="pin-btn"
+            (click)="note.isPined = false"
+            [ngStyle]="{ display: note.isPined ? 'inline-flex' : 'none' }"
+          >
+            <mat-icon>keep_on</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <div class="description-grid" (click)="openEditDialog(note)">
+        <p class="para">{{ note.description }}</p>
+      </div>
+
+      <div class="icons">
+        <app-icons
+          [formatBtn]="false"
+          [colorPalette]="true"
+          [notification]="true"
+          [collaborator]="true"
+          [image]="true"
+          [unarchive]="true"
+          [threeDots]="true"
+          [undo]="false"
+          [redo]="false"
+          [note]="note"
+          (bgColor)="bgHandler($event, note)"
+          [paletteInGrid]="true"
+          [menuBtn]="true"
+          (unarchiveEvent)="refreshNotes()"
+          (deleteEvent)="refreshNotesAfterDelete()"
+        />
+      </div>
+    </div>
+  </mat-card>
+</div>
