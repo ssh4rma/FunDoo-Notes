@@ -44,6 +44,7 @@ export class IconsComponent {
   @Output() deleteEvent = new EventEmitter();
   @Output() delForeverEvent = new EventEmitter();
   @Output() recoverEvent = new EventEmitter();
+  @Output() editCloseBtn = new EventEmitter();
 
   @Input() formatBtn = false;
   @Input() colorPalette = false;
@@ -95,20 +96,15 @@ export class IconsComponent {
   }
 
   onArchiveClick() {
-    this.isArchivedClickHandler.emit(true);
-
     let noteIdList = this.note.id;
     let data: any = {
       noteIdList: [noteIdList],
       isArchived: true,
     };
-
     if (this.note) {
       this.archiveService.postArchiveNote(data).subscribe({
-        next: (res: any) => {
-          // console.log(res);
-          // console.log('posted archive note successful');
-          this.notesService.getNotes();
+        next: () => {
+          this.isArchivedClickHandler.emit(true);
         },
         error: (err) => {
           console.log(err);
@@ -195,4 +191,10 @@ export class IconsComponent {
       duration: 2000,
     });
   }
+
+  onClickEditCloseBtn(): void {
+    this.editCloseBtn.emit();
+  }
+
+  //change color
 }

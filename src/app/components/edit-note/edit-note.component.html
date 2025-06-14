@@ -1,1 +1,68 @@
-<p>edit-note works!</p>
+<mat-card id="AddNoteCard" [ngStyle]="{ 'background-color': bgColor }">
+  <mat-card-content id="AddCardContent">
+    <div class="top-content">
+      <div class="top-input-div">
+        <input
+          type="text"
+          id="titleBar"
+          placeholder="Title"
+          value="title"
+          [(ngModel)]="data.title"
+          [ngStyle]="{ 'background-color': bgColor }"
+        />
+      </div>
+      <div class="pin-icon-div">
+        <button
+          class="pin-icon"
+          (click)="togglePin(); pinView ? unPinHandler() : pinHandler()"
+        >
+          <mat-icon>{{ pinView ? "keep_on" : "keep_off" }}</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <textarea
+      placeholder="Take a note..."
+      matInput
+      cdkTextareaAutosize
+      #autosize="cdkTextareaAutosize"
+      cdkAutosizeMinRows="1"
+      cdkAutosizeMaxRows="5"
+      id="takeNoteBar"
+      value="description"
+      [(ngModel)]="data.description"
+      [ngStyle]="{
+        'background-color': bgColor,
+        overflow: 'hidden',
+        'font-family': 'Roboto, sans-serif',
+        'font-size': '14px',
+        'margin-bottom': '20px'
+      }"
+    ></textarea>
+
+    <h5 id="time">Edited {{ " " + timeWithAmPm }}</h5>
+    <div id="bottom-icons-tab">
+      <app-icons
+        (bgColor)="setBgColor($event, data)"
+        (closeBtn)="dataFromCloseBtn($event)"
+        [formatBtn]="true"
+        [colorPalette]="true"
+        [notification]="true"
+        [collaborator]="true"
+        [image]="true"
+        [archive]="true"
+        [threeDots]="true"
+        [undo]="true"
+        [redo]="true"
+        [disableBtn]="true"
+        [closeButton]="true"
+        [menuBtn]="true"
+        [paletteInGrid]="true"
+        (isArchivedClickHandler)="isArchive()"
+        (deleteEvent)="isDel()"
+        [note]="data"
+        (editCloseBtn)="onCloseBtn()"
+      />
+    </div>
+  </mat-card-content>
+</mat-card>

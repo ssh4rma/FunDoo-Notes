@@ -8,13 +8,9 @@ import { DashboardDataService } from 'src/app/services/dashboard-data/dashboard-
 import { ChangeColorService } from 'src/app/services/color-change/change-color.service';
 import { MatIconModule } from '@angular/material/icon';
 import { PinedService } from 'src/app/services/pined/pined.service';
-import {
-  MatDialog,
-  MAT_DIALOG_DATA,
-  MatDialogRef,
-  MatDialogModule,
-} from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { EditNoteComponent } from '../../edit-note/edit-note.component';
 
 @Component({
   selector: 'app-note-card',
@@ -31,7 +27,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   templateUrl: './note-card.component.html',
   styleUrls: ['./note-card.component.css'],
 })
-export class NoteCardComponent implements OnInit {
+export class NoteCardComponent {
   constructor(
     private notesService: NotesService,
     private dashboardService: DashboardDataService,
@@ -72,8 +68,8 @@ export class NoteCardComponent implements OnInit {
   }
 
   bgHandler(color: string, note: any) {
-    console.log('happening');
-    console.log(note.id);
+    // console.log('happening');
+    // console.log(note.id);
     let noteIdList = note.id;
     let data: any = {
       color: color,
@@ -120,13 +116,23 @@ export class NoteCardComponent implements OnInit {
     this.notesService.getNotes();
   }
 
-  // openEditDialog(): void {
-  // this.dialog.open(EditNoteComponent, {
-  //   width: '400px',
-  //   data: { /* pass note data here if needed */ }
-  // });
+  archiveHandler(): void {
+    // console.log('this will trigger after clicking the archive');
+    this.notesService.getNotes();
 
-  // cardClickHandler(): void {
-  //   this.isCardClicked = true;
-  // }
+    this.notes$.subscribe((notes) => {
+      this.pinnedNotes = notes
+        .filter((n) => n.isPined && !n.isArchived && !n.isDeleted)
+        .reverse();
+      this.unpinnedNotes = notes
+        .filter((n) => !n.isPined && !n.isArchived && !n.isDeleted)
+        .reverse();
+    });
+  }
+
+  openEditDialog(note: any) {
+    this.dialog.open(EditNoteComponent, {
+      data: note,
+    });
+  }
 }

@@ -88,8 +88,8 @@
   right: -125px;
   background-color: white;
   padding: 8px;
-  display: grid; /* switch to grid */
-  grid-template-columns: repeat(3, 1fr); /* 3 per row */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 8px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
   border-radius: 10px;

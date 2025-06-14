@@ -87,8 +87,4 @@ export class NoteComponent {
   togglePin(): void {
     this.pinView = !this.pinView;
   }
-
-  isArchivedClickHandler(state: boolean): void {
-    this.isArchive = state;
-  }
 }

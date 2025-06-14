@@ -159,7 +159,7 @@
       <button
         *ngIf="closeButton"
         class="close-btn"
-        (click)="closeBox()"
+        (click)="closeBox(); onClickEditCloseBtn()"
         mat-icon-button
       >
         Close

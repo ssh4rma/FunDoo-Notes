@@ -31,7 +31,7 @@
         </div>
       </div>
 
-      <div class="description-list">
+      <div class="description-list" (click)="openEditDialog(note)">
         <p class="para">{{ note.description }}</p>
       </div>
 
@@ -91,7 +91,7 @@
         </div>
       </div>
 
-      <div class="description-grid">
+      <div class="description-grid" (click)="openEditDialog(note)">
         <p class="para">{{ note.description }}</p>
       </div>
 

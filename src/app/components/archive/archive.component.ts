@@ -9,6 +9,9 @@ import { DashboardDataService } from 'src/app/services/dashboard-data/dashboard-
 import { MatIconModule } from '@angular/material/icon';
 import { PinedService } from 'src/app/services/pined/pined.service';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { EditNoteComponent } from '../edit-note/edit-note.component';
+import { MatDialog } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-archive',
@@ -19,6 +22,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     IconsComponent,
     MatIconModule,
     MatTooltipModule,
+    MatDialogModule,
   ],
   templateUrl: './archive.component.html',
   styleUrls: ['./archive.component.css'],
@@ -29,7 +33,8 @@ export class ArchiveComponent {
     private colorService: ChangeColorService,
     private notesService: NotesService,
     private dashboardService: DashboardDataService,
-    private pinService: PinedService
+    private pinService: PinedService,
+    private dialog: MatDialog
   ) {}
 
   notes: any;
@@ -109,5 +114,11 @@ export class ArchiveComponent {
       error: (err) => console.log(err),
     });
     this.refreshNotes();
+  }
+
+  openEditDialog(note: any): void {
+    this.dialog.open(EditNoteComponent, {
+      data: note,
+    });
   }
 }

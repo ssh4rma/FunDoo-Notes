@@ -1,0 +1,114 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+mat-card {
+  width: auto;
+  margin: auto;
+  height: auto;
+}
+
+mat-card-content {
+  width: auto;
+  height: auto;
+}
+
+#time {
+  margin-top: 20px;
+  margin-left: 65%;
+}
+
+#AddNoteCard {
+  height: auto;
+}
+
+#bottom-icons-tab {
+  margin-bottom: auto;
+}
+
+#AddCardContent {
+  padding: 16px 16px 0px 20px;
+}
+
+#titleBar {
+  /* height: 30px; */
+  width: 300px;
+  font-size: x-large;
+  border: none;
+  outline: none;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+#takeNoteBar {
+  height: 100px;
+  width: 300px;
+  font-size: large;
+  margin-top: 10px;
+  border: none;
+  outline: none;
+}
+
+.top-content {
+  display: flex;
+  flex-direction: row;
+  gap: 50%;
+}
+
+.pin-icon {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  right: 0px;
+  left: 45%;
+}
+
+#titleBar,
+#takeNoteBar {
+  width: 100%;
+  font-size: large;
+}
+
+@media (max-width: 635px) {
+  #titleBar,
+  #takeNoteBar {
+    width: 100px;
+  }
+}
+
+@media (max-width: 350px) {
+  #titleBar,
+  #takeNoteBar {
+    visibility: hidden;
+    position: absolute;
+  }
+}
+
+@media (max-width: 470px) {
+  .left-side {
+    width: 10px;
+  }
+}
+
+@media (max-width: 900px) {
+  #titleBar,
+  #takeNoteBar {
+    width: 100px;
+  }
+}
+
+#AddNoteCard,
+#collapsedNoteCard {
+  box-shadow: 0 1px 3px rgba(60, 64, 67, 0.15), 0 4px 8px rgba(60, 64, 67, 0.15);
+}
+
+@media (max-width: 360px) {
+  .right-side-icons {
+    visibility: hidden;
+    position: absolute;
+  }
+}

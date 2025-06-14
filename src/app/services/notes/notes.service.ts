@@ -42,4 +42,15 @@ export class NotesService {
       error: (err) => console.log(err),
     });
   }
+
+  updateNotes(data: any) {
+    this.http.getHeader();
+    let token = this.http.token;
+    let URL = `https://fundoonotes.incubation.bridgelabz.com/api/notes/updateNotes?access_token=${token}`;
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    });
+    return this.http.postApi(URL, data, { headers });
+  }
 }
