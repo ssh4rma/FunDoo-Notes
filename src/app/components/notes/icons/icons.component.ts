@@ -124,6 +124,7 @@ export class IconsComponent {
       this.archiveService.postArchiveNote(data).subscribe({
         next: () => {
           this.unarchiveEvent.emit();
+          // this.archiveService.getArchiveNote().subscribe();
         },
         error: (err) => {
           console.log(err);

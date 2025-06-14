@@ -84,8 +84,8 @@ export class EditNoteComponent {
     this.notesService.getNotes();
   }
 
-  //archive
-  isArchive(): void {
+  //unarchive
+  unarchiveHandler(): void {
     this.refreshData();
   }
 

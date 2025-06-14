@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpserviceService } from '../httpservice/httpservice.service';
 import { HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ArchiveService {
-  constructor(private http: HttpserviceService) {}
+  constructor(private readonly http: HttpserviceService) {}
+
+  private readonly archiveNotesSubject = new BehaviorSubject<any[]>([]);
+  archiveNotes$ = this.archiveNotesSubject.asObservable();
 
   postArchiveNote(data: any) {
     this.http.getHeader();
@@ -29,6 +33,14 @@ export class ArchiveService {
       Accept: 'application/json',
     });
 
-    return this.http.getApi(url, headers);
+    this.http.getApi(url, headers).subscribe({
+      next: (res: any) => {
+        const updateNotes = res.data.data.reverse();
+        this.archiveNotesSubject.next(updateNotes);
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
   }
 }
