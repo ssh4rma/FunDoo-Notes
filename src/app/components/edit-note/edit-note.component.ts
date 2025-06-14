@@ -1,5 +1,9 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { IconsComponent } from '../notes/icons/icons.component';
@@ -8,7 +12,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { ChangeColorService } from 'src/app/services/color-change/change-color.service';
 import { NotesService } from 'src/app/services/notes/notes.service';
-import { MatDialogRef } from '@angular/material/dialog';
 import { PinedService } from 'src/app/services/pined/pined.service';
 import { ArchiveService } from 'src/app/services/archive/archive.service';
 
@@ -30,11 +33,11 @@ import { ArchiveService } from 'src/app/services/archive/archive.service';
 export class EditNoteComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private colorService: ChangeColorService,
-    private notesService: NotesService,
-    private dialogRef: MatDialogRef<EditNoteComponent>,
-    private pinService: PinedService,
-    private archiveService: ArchiveService
+    private readonly colorService: ChangeColorService,
+    private readonly notesService: NotesService,
+    private readonly dialogRef: MatDialogRef<EditNoteComponent>,
+    private readonly pinService: PinedService,
+    private readonly archiveService: ArchiveService
   ) {}
 
   ngOnInit(): void {

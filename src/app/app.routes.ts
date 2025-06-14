@@ -6,6 +6,7 @@ import { NotesComponent } from './components/notes/notes.component';
 import { ArchiveComponent } from './components/archive/archive.component';
 import { TrashComponent } from './components/trash/trash.component';
 import { AuthGuardService } from './services/auth-guard/auth-guard.service';
+import { ReminderComponent } from './components/reminder/reminder.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -20,6 +21,7 @@ export const routes: Routes = [
       { path: 'notes', component: NotesComponent },
       { path: 'archive', component: ArchiveComponent },
       { path: 'trash', component: TrashComponent },
+      { path: 'reminder', component: ReminderComponent },
     ],
   },
 ];

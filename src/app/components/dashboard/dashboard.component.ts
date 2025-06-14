@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet, Router } from '@angular/router';
 import { TopNavComponent } from './top-nav/top-nav.component';
@@ -18,7 +18,11 @@ export class DashboardComponent {
     private dashboardData: DashboardDataService
   ) {}
 
+  isTrashClicked = false;
+  isArchivedClicked = false;
   isSideNavOpened = false;
+  isNotesClicked = true;
+  isReminderClicked = false;
   listView = false;
 
   // view = '';
@@ -41,14 +45,35 @@ export class DashboardComponent {
 
   onClickNotes(): void {
     this.router.navigate(['/dashboard/notes']);
+    this.isNotesClicked = true;
+    this.isArchivedClicked = false;
+    this.isTrashClicked = false;
+    this.isReminderClicked = false;
   }
 
   onClickArchive(): void {
     this.router.navigate(['/dashboard/archive']);
+    console.log('archive is clicked');
+    this.isNotesClicked = false;
+    this.isArchivedClicked = true;
+    this.isTrashClicked = false;
+    this.isReminderClicked = false;
   }
 
   onClickTrash(): void {
     this.router.navigate(['/dashboard/trash']);
+    this.isNotesClicked = false;
+    this.isArchivedClicked = false;
+    this.isTrashClicked = true;
+    this.isReminderClicked = false;
+  }
+
+  onClickReminder(): void {
+    this.router.navigate(['/dashboard/reminder']);
+    this.isNotesClicked = false;
+    this.isArchivedClicked = false;
+    this.isTrashClicked = false;
+    this.isReminderClicked = true;
   }
 
   searchHandler(txt: string) {

@@ -90,12 +90,11 @@
       <button
         mat-icon-button
         class="icon-btn"
-        id="unarchive"
         *ngIf="unarchive"
         (click)="onUnarchiveClick(); openSnackBar('Note Unarchived', 'OK')"
         matTooltip="Unarchive"
       >
-        <mat-icon>unarchive</mat-icon>
+        <mat-icon id="unarchive">unarchive</mat-icon>
       </button>
 
       <mat-menu #menu="matMenu" id="threeDots-menu">

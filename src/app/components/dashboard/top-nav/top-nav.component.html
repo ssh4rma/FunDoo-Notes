@@ -12,11 +12,35 @@
         <mat-icon style="color: #5f6368">menu</mat-icon>
       </button>
       <img
+        *ngIf="isNotesClicked"
         id="google-keep-logo"
         src="../../../assets/google_keep_logo.png"
         alt="logo"
       />
-      <span matTooltip="Keep" style="color: #5f6368">Keep</span>
+      <span *ngIf="isNotesClicked" matTooltip="Keep" style="color: #5f6368"
+        >Keep</span
+      >
+      <span
+        *ngIf="isArchivedClicked"
+        matTooltip="Archive"
+        style="color: #5f6368"
+        id="woIcon"
+        >Archive</span
+      >
+      <span
+        *ngIf="isTrashClicked"
+        matTooltip="Trash"
+        style="color: #5f6368"
+        id="woIcon"
+        >Trash</span
+      >
+      <span
+        *ngIf="isReminderClicked"
+        matTooltip="Trash"
+        style="color: #5f6368"
+        id="woIcon"
+        >Reminders</span
+      >
     </div>
 
     <div class="search-bar">

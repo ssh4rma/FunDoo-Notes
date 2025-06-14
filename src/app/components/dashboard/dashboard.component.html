@@ -3,6 +3,10 @@
   (toggleSidenav)="toggleSidenav()"
   (toggleView)="toggleView($event)"
   (searchTextString)="searchHandler($event)"
+  [isTrashClicked]="isTrashClicked"
+  [isArchivedClicked]="isArchivedClicked"
+  [isNotesClicked]="isNotesClicked"
+  [isReminderClicked]="isReminderClicked"
 ></app-top-nav>
 
 <app-side-nav
@@ -14,6 +18,7 @@
   (onClickNotes)="onClickNotes()"
   (onClickArchive)="onClickArchive()"
   (onClickTrash)="onClickTrash()"
+  (onClickReminder)="onClickReminder()"
 >
 </app-side-nav>
 <router-outlet></router-outlet>

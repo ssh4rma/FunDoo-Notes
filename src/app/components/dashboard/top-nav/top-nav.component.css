@@ -11,6 +11,11 @@ mat-toolbar {
   border: solid 1px rgb(229, 221, 221);
 }
 
+#woIcon {
+  margin-left: 50px;
+  position: absolute;
+}
+
 #google-keep-logo {
   width: 30px;
   height: 40px;

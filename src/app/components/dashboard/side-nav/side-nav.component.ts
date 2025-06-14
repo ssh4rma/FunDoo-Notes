@@ -20,6 +20,7 @@ export class SideNavComponent {
   @Output() onClickNotes = new EventEmitter<void>();
   @Output() onClickArchive = new EventEmitter<void>();
   @Output() onClickTrash = new EventEmitter<void>();
+  @Output() onClickReminder = new EventEmitter<void>();
 
   isHovered = false;
 
@@ -40,7 +41,12 @@ export class SideNavComponent {
 
   items = [
     { icon: 'lightbulb', label: 'Notes', index: 0, handler: this.onClickNotes },
-    { icon: 'notifications', label: 'Reminders', index: 1 },
+    {
+      icon: 'notifications',
+      label: 'Reminders',
+      index: 1,
+      handler: this.onClickReminder,
+    },
     { icon: 'edit', label: 'Edit Labels', index: 2 },
     {
       icon: 'archive',

@@ -30,6 +30,11 @@ export class TopNavComponent {
   @Output() toggleView = new EventEmitter<string>();
   @Output() searchTextString = new EventEmitter<string>();
 
+  @Input() isTrashClicked = false;
+  @Input() isArchivedClicked = false;
+  @Input() isNotesClicked = false;
+  @Input() isReminderClicked = false;
+
   searchText = '';
 
   textStringHandler(): void {
