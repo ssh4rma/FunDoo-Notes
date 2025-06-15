@@ -1,12 +1,5 @@
-# .vercelignore
-
-node_modules
-src
-.angular
-e2e
-README.md
-tsconfig\*.json
-angular.json
-.git
-.vscode
-dist/ # Vercel will regenerate this itself
+node_modules/
+src/
+.angular/
+*.ts
+*.json
