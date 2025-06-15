@@ -52,11 +52,3 @@ FunDoo Notes is a Google Keep-inspired note-taking web application built with An
 ## API
 
 This app communicates with the [Fundoo Notes API](https://fundoonotes.incubation.bridgelabz.com/api/). You may need valid API credentials to use all features.
-
-## Contributing
-
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-## License
-
-[MIT](LICENSE)
