@@ -33,7 +33,7 @@ FunDoo Notes is a Google Keep-inspired note-taking web application built with An
 1. Clone the repository:
 
    ```sh
-   git clone <your-repo-url>
+   git clone https://github.com/ssh4rma/FunDoo-Notes.git
    cd FunDoo-Notes
    ```
 
