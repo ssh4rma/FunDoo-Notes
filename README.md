@@ -48,7 +48,3 @@ FunDoo Notes is a Google Keep-inspired note-taking web application built with An
    ng serve
    ```
    The app will be available at `http://localhost:4200/`.
-
-## API
-
-This app communicates with the [Fundoo Notes API](https://fundoonotes.incubation.bridgelabz.com/api/). You may need valid API credentials to use all features.
