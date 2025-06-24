@@ -2,6 +2,9 @@
 
 FunDoo Notes is a Google Keep-inspired note-taking web application built with Angular and Angular Material. It allows users to register, log in, and manage their notes with features like pinning, archiving, reminders, color coding, and more.
 
+## Project Demonstration
+**https://youtu.be/V_GLysNw0sI?si=FS5qFP1bd9poz0bi**
+
 ## Features
 
 - **User Authentication:** Register and log in securely.
